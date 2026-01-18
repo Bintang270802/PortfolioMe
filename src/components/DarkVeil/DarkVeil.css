@@ -1,0 +1,117 @@
+.darkveil-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: fadeInOut 8s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.98);
+  }
+  75% {
+    opacity: 0.8;
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+/* Variasi animasi yang lebih halus */
+.darkveil-canvas.subtle {
+  animation: subtleFade 12s ease-in-out infinite;
+}
+
+@keyframes subtleFade {
+  0% {
+    opacity: 0.2;
+    filter: blur(0px);
+  }
+  33% {
+    opacity: 0.6;
+    filter: blur(0.5px);
+  }
+  66% {
+    opacity: 0.3;
+    filter: blur(0.2px);
+  }
+  100% {
+    opacity: 0.2;
+    filter: blur(0px);
+  }
+}
+
+/* Animasi yang lebih dramatis */
+.darkveil-canvas.dramatic {
+  animation: dramaticFade 6s ease-in-out infinite;
+}
+
+@keyframes dramaticFade {
+  0% {
+    opacity: 0.1;
+    transform: scale(0.95);
+    filter: brightness(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+  100% {
+    opacity: 0.1;
+    transform: scale(0.95);
+    filter: brightness(0.8);
+  }
+}
+
+/* Animasi pulsing yang lembut */
+.darkveil-canvas.pulse {
+  animation: gentlePulse 10s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.02);
+  }
+}
+
+/* Efek breathing yang natural */
+.darkveil-canvas.breathing {
+  animation: breathing 15s ease-in-out infinite;
+}
+
+@keyframes breathing {
+  0%, 100% {
+    opacity: 0.3;
+    filter: blur(0px) brightness(1);
+  }
+  25% {
+    opacity: 0.5;
+    filter: blur(0.3px) brightness(1.1);
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(0.5px) brightness(1.2);
+  }
+  75% {
+    opacity: 0.4;
+    filter: blur(0.2px) brightness(1.05);
+  }
+}
