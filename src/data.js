@@ -15,7 +15,7 @@ import Tools6 from "/assets/tools/js.png";
 import Tools7 from "/assets/tools/nodejs.png";
 import Tools8 from "/assets/tools/github.png";
 import Tools9 from "/assets/tools/Express.png";
-import Tools10 from "/assets/tools/canva.png";
+import Tools10 from "/assets/tools/php.png";
 import Tools11 from "/assets/tools/figma.png";
 import Tools12 from "/assets/tools/supabase.jpg";
 import Tools13 from "/assets/tools/PostgresSQL.png";
@@ -25,6 +25,7 @@ import Tools16 from "/assets/tools/ts.png";
 import Tools17 from "/assets/tools/Vue.js.png";
 import Tools18 from "/assets/tools/vite.png";
 import Tools19 from "/assets/tools/mysql.png";
+import Tools20 from "/assets/tools/Laravel.png";
 
 export const listTools = [
   {
@@ -93,8 +94,8 @@ export const listTools = [
   {
     id: 10,
     gambar: Tools10,
-    nama: "Canva",
-    ket: "Design App",
+    nama: "php",
+    ket: "Language",
     dad: "1000",
   },
   {
@@ -159,6 +160,13 @@ export const listTools = [
     nama: "MySql",
     ket: "Framework",
     dad: "1900",
+  },
+  {
+    iid: 20,
+    gambar: Tools20,
+    nama: "Laravel",
+    ket: "Fremwork",
+    dad: "2000",
   },
 ];
 
