@@ -63,8 +63,8 @@ function DockItem({
       tabIndex={0}
       role="button"
     >
-      {Children.map(children, (child) =>
-        cloneElement(child, { isHovered })
+      {Children.map(children, (child, index) =>
+        cloneElement(child, { isHovered, key: index })
       )}
     </motion.div>
   );
@@ -139,7 +139,7 @@ export default function Dock({
       >
         {items.map((item, index) => (
           <DockItem
-            key={index}
+            key={item.id || item.label || index}
             onClick={item.onClick}
             className={item.className}
             mouseX={mouseX}

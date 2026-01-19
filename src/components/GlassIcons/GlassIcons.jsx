@@ -21,7 +21,7 @@ const GlassIcons = ({ items, className }) => {
     <div className={`icon-btns ${className || ""}`}>
       {items.map((item, index) => (
         <button
-          key={index}
+          key={item.label || item.id || index}
           className={`icon-btn ${item.customClass || ""}`}
           aria-label={item.label}
           type="button"

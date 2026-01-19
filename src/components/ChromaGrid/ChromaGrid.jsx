@@ -90,7 +90,7 @@ export const ChromaGrid = ({
     >
       {data.map((c, i) => (
         <article
-          key={i}
+          key={c.id || i}
           className="chroma-card"
           onMouseMove={handleCardMove}
           // Panggil `onItemClick` saat kartu diklik dan kirim datanya

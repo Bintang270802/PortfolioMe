@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { useLanguage } from './hooks/useLanguage';
-import ErrorBoundary from "./components/ErrorBoundary";
+import { useToast } from './hooks/useToast';
+import { usePageTracking, useScrollTracking, useErrorTracking } from './hooks/useAnalytics';
+import { trackProjectView, trackFilter } from './utils/analytics';
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 import ShinyText from "./components/ShinyText/ShinyText";
 import BlurText from "./components/BlurText/BlurText";
@@ -8,9 +10,8 @@ import RotatingText from "./components/RotatingText/RotatingText";
 import Lanyard from "./components/Lanyard/Lanyard";
 import { listTools, listProyek, listSertifikat, listPengalaman } from "./data";
 import ChromaGrid from "./components/ChromaGrid/ChromaGrid";
-+
-
 import ProjectModal from "./components/ProjectModal/ProjectModal";
+import ProjectFilter from "./components/ProjectFilter/ProjectFilter";
 import DarkVeil from "./components/DarkVeil/DarkVeil";
 import AOS from 'aos';
 import ChatRoom from "./components/ChatRoomSupabase";
@@ -18,6 +19,7 @@ import SupabaseStatus from "./components/SupabaseStatus";
 import CertificateSection from "./components/CertificateSection";
 import ExperienceTimeline from "./components/ExperienceTimeline";
 import ContactForm from "./components/ContactForm";
+import ToastContainer from "./components/Toast/ToastContainer";
 import 'aos/dist/aos.css';
 
 AOS.init();
@@ -27,9 +29,31 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
+  const [filteredProjects, setFilteredProjects] = useState(listProyek);
+  
+  // Toast system
+  const { toasts, removeToast } = useToast();
+  
+  // Analytics hooks
+  usePageTracking();
+  useScrollTracking();
+  useErrorTracking();
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
+    // Track project view
+    trackProjectView(
+      project.title.id || project.title.en || project.title,
+      project.id
+    );
+  };
+
+  const handleFilteredProjects = (projects) => {
+    setFilteredProjects(projects);
+    // Track filter usage
+    if (projects.length !== listProyek.length) {
+      trackFilter('project_filter', 'applied', projects.length);
+    }
   };
 
   const handleCloseModal = () => {
@@ -301,6 +325,15 @@ function App() {
               {t('projects.subtitle')}
             </p>
           </div>
+
+          {/* Project Filter */}
+          <div className="mb-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-once="true">
+            <ProjectFilter
+              projects={listProyek}
+              onFilteredProjects={handleFilteredProjects}
+              className="max-w-4xl mx-auto px-4"
+            />
+          </div>
           
           <div className="relative">
             {/* Background decoration */}
@@ -308,7 +341,7 @@ function App() {
             
             <div className="relative px-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" data-aos-once="true">
               <ChromaGrid
-                items={listProyek}
+                items={filteredProjects}
                 onItemClick={handleProjectClick}
                 radius={500}
                 damping={0.45}
@@ -371,6 +404,9 @@ function App() {
         onClose={handleCloseModal}
         project={selectedProject}
       />
+      
+      {/* Toast Container */}
+      <ToastContainer toasts={toasts} onRemoveToast={removeToast} />
       
       {/* Development Status - hanya tampil di development */}
       {import.meta.env.DEV && <SupabaseStatus />}

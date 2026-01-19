@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { RiAwardLine, RiCalendarLine, RiVerifiedBadgeLine, RiImageLine } from 'react-icons/ri';
 import { useLanguage } from '../hooks/useLanguage';
 import { getLocalizedText } from '../data';
+import { trackCertificateView } from '../utils/analytics';
+import CertificateDownload from './CertificateDownload/CertificateDownload';
 
 const CertificateCard = ({ sertifikat }) => {
   const [imageError, setImageError] = useState(false);
@@ -9,6 +11,14 @@ const CertificateCard = ({ sertifikat }) => {
 
   const handleImageError = () => {
     setImageError(true);
+  };
+
+  const handleCertificateClick = () => {
+    // Track certificate view
+    trackCertificateView(
+      getLocalizedText(sertifikat.nama, language),
+      sertifikat.id
+    );
   };
 
   // Generate certificate-themed background based on category
@@ -166,6 +176,21 @@ const CertificateCard = ({ sertifikat }) => {
           <p className="text-xs font-mono text-gray-400 bg-zinc-800 px-2 py-1 rounded mt-1 truncate">
             {sertifikat.kredensial}
           </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleCertificateClick}
+            className="flex-1 bg-violet-600/20 text-violet-300 hover:bg-violet-600/30 border border-violet-500/30 hover:border-violet-500/50 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200"
+          >
+            View Certificate
+          </button>
+          <CertificateDownload 
+            certificate={sertifikat} 
+            variant="icon"
+            className="flex-shrink-0"
+          />
         </div>
       </div>
     </div>
