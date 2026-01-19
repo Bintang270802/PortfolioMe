@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FiPhone, FiCheck, FiX, FiExternalLink, FiMessageCircle } from 'react-icons/fi';
+import { validateWhatsAppNumber } from '../utils/validation';
 
 export default function WhatsAppInput({ 
   name = "WhatsApp",
@@ -12,6 +13,7 @@ export default function WhatsAppInput({
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [error, setError] = useState('');
 
   // Format phone number as user types
   const formatPhoneNumber = (input) => {
@@ -31,27 +33,17 @@ export default function WhatsAppInput({
     }
   };
 
-  // Validate Indonesian phone number
-  const validatePhoneNumber = (phone) => {
-    // Remove formatting
-    const digits = phone.replace(/\D/g, '');
-    
-    // Indonesian mobile numbers: 8xx-xxxx-xxxx (10-12 digits after 8)
-    // Common prefixes: 811, 812, 813, 814, 815, 816, 817, 818, 819, 821, 822, 823, 831, 832, 833, 838, 851, 852, 853, 855, 856, 857, 858, 859, 877, 878, 881, 882, 883, 884, 885, 886, 887, 888, 889, 895, 896, 897, 898, 899
-    const indonesianMobileRegex = /^8[1-9][0-9]{8,10}$/;
-    
-    return indonesianMobileRegex.test(digits);
-  };
-
   const handleInputChange = (e) => {
     const formatted = formatPhoneNumber(e.target.value);
     setValue(formatted);
     
-    const valid = validatePhoneNumber(formatted);
-    setIsValid(valid);
+    // Use validation utility
+    const validation = validateWhatsAppNumber(formatted);
+    setIsValid(validation.isValid);
+    setError(validation.error || '');
     
     if (onValidChange) {
-      onValidChange(valid, formatted);
+      onValidChange(validation.isValid, formatted);
     }
   };
 
@@ -101,15 +93,17 @@ export default function WhatsAppInput({
               : 'border-zinc-600/50 focus:border-violet-500/50 focus:ring-violet-500/20'
           } ${className}`}
           required={required}
+          aria-describedby={`${name}-helper`}
+          aria-invalid={value.length > 0 && !isValid}
         />
 
         {/* Validation Icon */}
         {value.length > 0 && (
           <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
             {isValid ? (
-              <FiCheck className="w-5 h-5 text-green-400" />
+              <FiCheck className="w-5 h-5 text-green-400" aria-label="Valid number" />
             ) : (
-              <FiX className="w-5 h-5 text-red-400" />
+              <FiX className="w-5 h-5 text-red-400" aria-label="Invalid number" />
             )}
           </div>
         )}
@@ -117,17 +111,20 @@ export default function WhatsAppInput({
 
       {/* Helper Text */}
       <div className="flex items-center justify-between">
-        <p className={`text-xs mt-1 ${
-          value.length > 0
-            ? isValid
-              ? 'text-green-400'
-              : 'text-red-400'
-            : 'text-zinc-400'
-        }`}>
+        <p 
+          id={`${name}-helper`}
+          className={`text-xs mt-1 ${
+            value.length > 0
+              ? isValid
+                ? 'text-green-400'
+                : 'text-red-400'
+              : 'text-zinc-400'
+          }`}
+        >
           {value.length > 0
             ? isValid
               ? `✓ Nomor valid: ${getFullPhoneNumber()}`
-              : '✗ Format nomor tidak valid'
+              : error || '✗ Format nomor tidak valid'
             : helperText
           }
         </p>
@@ -138,6 +135,7 @@ export default function WhatsAppInput({
             type="button"
             onClick={openWhatsApp}
             className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1 transition-colors duration-200"
+            aria-label="Test WhatsApp number"
           >
             <span>Test WhatsApp</span>
             <FiExternalLink className="w-3 h-3" />

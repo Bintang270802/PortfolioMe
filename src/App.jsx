@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { useLanguage } from './hooks/useLanguage';
+import ErrorBoundary from "./components/ErrorBoundary";
 import ProfileCard from "./components/ProfileCard/ProfileCard";
 import ShinyText from "./components/ShinyText/ShinyText";
 import BlurText from "./components/BlurText/BlurText";
@@ -7,6 +8,8 @@ import RotatingText from "./components/RotatingText/RotatingText";
 import Lanyard from "./components/Lanyard/Lanyard";
 import { listTools, listProyek, listSertifikat, listPengalaman } from "./data";
 import ChromaGrid from "./components/ChromaGrid/ChromaGrid";
++
+
 import ProjectModal from "./components/ProjectModal/ProjectModal";
 import DarkVeil from "./components/DarkVeil/DarkVeil";
 import AOS from 'aos';
@@ -14,7 +17,7 @@ import ChatRoom from "./components/ChatRoomSupabase";
 import SupabaseStatus from "./components/SupabaseStatus";
 import CertificateSection from "./components/CertificateSection";
 import ExperienceTimeline from "./components/ExperienceTimeline";
-import WhatsAppInput from "./components/WhatsAppInput";
+import ContactForm from "./components/ContactForm";
 import 'aos/dist/aos.css';
 
 AOS.init();
@@ -24,11 +27,6 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
-  const [whatsappValid, setWhatsappValid] = useState(false);
-
-  const handleWhatsAppValidation = (isValid, value) => {
-    setWhatsappValid(isValid);
-  };
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -356,85 +354,13 @@ function App() {
             </div>
 
             {/* Contact Form */}
-            <div 
-              className="relative group"
+            <div
               data-aos="fade-left" 
               data-aos-duration="800" 
               data-aos-delay="400" 
               data-aos-once="true"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <form
-                action="https://formsubmit.co/tribintangsaputra03@gmail.com"
-                method="POST"
-                className="relative bg-zinc-900/60 backdrop-blur-md border border-zinc-700/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 group-hover:border-blue-500/50 transition-all duration-500"
-                autoComplete="off"
-              >
-                <div className="flex items-center gap-3 mb-6 sm:mb-8">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse" />
-                  <span className="text-blue-300 font-medium">Send Message</span>
-                </div>
-                
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-white">
-                      {t('contact.form.fullName')}
-                    </label>
-                    <input
-                      type="text"
-                      name="Name"
-                      placeholder={t('contact.form.namePlaceholder')}
-                      className="w-full bg-zinc-800/50 border border-zinc-600/50 rounded-xl px-4 py-3 text-white placeholder-zinc-400 focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all duration-300 text-sm sm:text-base"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-white">
-                      {t('contact.form.email')}
-                    </label>
-                    <input
-                      type="email"
-                      name="Email"
-                      placeholder={t('contact.form.emailPlaceholder')}
-                      className="w-full bg-zinc-800/50 border border-zinc-600/50 rounded-xl px-4 py-3 text-white placeholder-zinc-400 focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all duration-300 text-sm sm:text-base"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-white">
-                      {t('contact.form.whatsapp')}
-                    </label>
-                    <WhatsAppInput
-                      name="WhatsApp"
-                      placeholder={t('contact.form.whatsappPlaceholder')}
-                      helperText={t('contact.form.whatsappHelper')}
-                      onValidChange={handleWhatsAppValidation}
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="block text-sm font-semibold text-white">
-                      {t('contact.form.message')}
-                    </label>
-                    <textarea
-                      name="message"
-                      rows="6"
-                      placeholder={t('contact.form.messagePlaceholder')}
-                      className="w-full bg-zinc-800/50 border border-zinc-600/50 rounded-xl px-4 py-3 text-white placeholder-zinc-400 focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all duration-300 resize-none text-sm sm:text-base"
-                      required
-                    />
-                  </div>
-                  
-                  <button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-violet-500/25 text-sm sm:text-base"
-                  >
-                    <ShinyText text={t('contact.form.send')} disabled={false} speed={3} />
-                  </button>
-                </div>
-              </form>
+              <ContactForm t={t} />
             </div>
           </div>
         </div>

@@ -36,22 +36,12 @@ export default function ChatRoom() {
     
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      console.log('Initial session:', session); // Debug log
-      if (session?.user) {
-        console.log('User metadata:', session.user.user_metadata); // Debug avatar
-        console.log('Avatar URL:', session.user.user_metadata?.avatar_url); // Debug avatar
-      }
       setUser(session?.user ?? null);
       setLoading(false);
     });
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      console.log('Auth state changed:', _event, session?.user); // Debug log
-      if (session?.user) {
-        console.log('User metadata:', session.user.user_metadata); // Debug avatar
-        console.log('Avatar URL:', session.user.user_metadata?.avatar_url); // Debug avatar
-      }
       setUser(session?.user ?? null);
     });
 
@@ -82,12 +72,10 @@ export default function ChatRoom() {
   }, []);
 
   const loadMessages = async () => {
-    console.log('Loading messages...'); // Debug log
     const { data, error } = await getMessages();
     if (error) {
       console.error('Error loading messages:', error);
     } else {
-      console.log('Messages loaded:', data); // Debug log
       setMessages(data || []);
     }
   };
@@ -106,8 +94,6 @@ export default function ChatRoom() {
     setIsProcessing(false);
     
     if (error) {
-      console.error('Error logging in with Google:', error);
-      
       if (error.message?.includes('provider is not enabled') || 
           error.message?.includes('Unsupported provider') ||
           error.message?.includes('deleted_client') ||
@@ -161,7 +147,6 @@ export default function ChatRoom() {
     setIsProcessing(false);
     
     if (error) {
-      console.error('Error sending magic link:', error);
       setAuthStatus({
         type: 'error',
         title: 'Gagal Mengirim Magic Link',
@@ -212,7 +197,6 @@ export default function ChatRoom() {
       setIsProcessing(false);
       
       if (error) {
-        console.error('Error signing up:', error);
         setAuthStatus({
           type: 'error',
           title: 'Gagal Membuat Akun',
@@ -241,7 +225,6 @@ export default function ChatRoom() {
       setIsProcessing(false);
       
       if (error) {
-        console.error('Error logging in:', error);
         setAuthStatus({
           type: 'error',
           title: 'Login Gagal',
@@ -278,11 +261,7 @@ export default function ChatRoom() {
     e.preventDefault();
     if (!message.trim() || !user) return;
 
-    console.log('Sending message...', { user, message }); // Debug log
-
     const messageData = createMessageData(user, message);
-
-    console.log('Message data:', messageData); // Debug log
 
     const { data, error } = await insertMessage(messageData);
     
@@ -290,7 +269,6 @@ export default function ChatRoom() {
       console.error('Error sending message:', error);
       alert(`Error: ${error.message || 'Failed to send message'}`);
     } else {
-      console.log('Message sent successfully:', data); // Debug log
       setMessage("");
     }
   };

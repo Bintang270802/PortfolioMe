@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 // Ambil konfigurasi dari environment variables
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const googleOAuthEnabled = import.meta.env.VITE_GOOGLE_OAUTH_ENABLED === 'true'
 
 // Cek apakah konfigurasi valid
 const isValidConfig = supabaseUrl && 
@@ -14,16 +15,33 @@ const isValidConfig = supabaseUrl &&
 
 // Buat client hanya jika konfigurasi valid
 export const supabase = isValidConfig 
-  ? createClient(supabaseUrl, supabaseAnonKey)
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true
+      }
+    })
   : null
 
 // Export status konfigurasi
 export const isSupabaseConfigured = isValidConfig
+export const isGoogleOAuthEnabled = googleOAuthEnabled && isValidConfig
 
 // Auth functions dengan error handling
 export const loginWithGoogle = async () => {
   if (!supabase) {
     return { data: null, error: { message: 'Supabase not configured' } }
+  }
+  
+  if (!googleOAuthEnabled) {
+    return { 
+      data: null, 
+      error: { 
+        message: 'Google OAuth is disabled. Please enable it in environment variables or use alternative login methods.',
+        code: 'OAUTH_DISABLED'
+      } 
+    }
   }
   
   try {
@@ -44,10 +62,25 @@ export const loginWithGoogle = async () => {
   }
 }
 
-// Alternative: Email/Password signup (temporary)
+// Email/Password signup
 export const signUpWithEmail = async (email, password, displayName) => {
   if (!supabase) {
     return { data: null, error: { message: 'Supabase not configured' } }
+  }
+  
+  // Validate inputs
+  if (!email || !password || !displayName) {
+    return { 
+      data: null, 
+      error: { message: 'Email, password, and display name are required' } 
+    }
+  }
+  
+  if (password.length < 6) {
+    return { 
+      data: null, 
+      error: { message: 'Password must be at least 6 characters long' } 
+    }
   }
   
   try {
@@ -67,10 +100,18 @@ export const signUpWithEmail = async (email, password, displayName) => {
   }
 }
 
-// Alternative: Email/Password login
+// Email/Password login
 export const loginWithEmail = async (email, password) => {
   if (!supabase) {
     return { data: null, error: { message: 'Supabase not configured' } }
+  }
+  
+  // Validate inputs
+  if (!email || !password) {
+    return { 
+      data: null, 
+      error: { message: 'Email and password are required' } 
+    }
   }
   
   try {
@@ -84,10 +125,26 @@ export const loginWithEmail = async (email, password) => {
   }
 }
 
-// Magic Link Login (easiest alternative)
+// Magic Link Login
 export const loginWithMagicLink = async (email) => {
   if (!supabase) {
     return { data: null, error: { message: 'Supabase not configured' } }
+  }
+  
+  // Validate email
+  if (!email) {
+    return { 
+      data: null, 
+      error: { message: 'Email is required' } 
+    }
+  }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email)) {
+    return { 
+      data: null, 
+      error: { message: 'Please enter a valid email address' } 
+    }
   }
   
   try {
@@ -122,48 +179,52 @@ export const insertMessage = async (messageData) => {
     return { data: null, error: { message: 'Supabase not configured' } }
   }
   
-  console.log('Inserting message to Supabase:', messageData); // Debug log
+  // Validate message data
+  if (!messageData || !messageData.text || !messageData.user_id) {
+    return { 
+      data: null, 
+      error: { message: 'Invalid message data' } 
+    }
+  }
+  
+  // Sanitize message text
+  const sanitizedMessage = {
+    ...messageData,
+    text: messageData.text.trim().substring(0, 1000) // Limit message length
+  }
   
   try {
     const { data, error } = await supabase
       .from('messages')
-      .insert([messageData])
+      .insert([sanitizedMessage])
       .select()
-    
-    console.log('Supabase response:', { data, error }); // Debug log
     
     return { data, error }
   } catch (err) {
-    console.error('Insert message catch error:', err); // Debug log
     return { data: null, error: err }
   }
 }
 
-export const getMessages = async () => {
+export const getMessages = async (limit = 50) => {
   if (!supabase) {
     return { data: [], error: { message: 'Supabase not configured' } }
   }
-  
-  console.log('Getting messages from Supabase...'); // Debug log
   
   try {
     const { data, error } = await supabase
       .from('messages')
       .select('*')
       .order('created_at', { ascending: true })
-    
-    console.log('Messages response:', { data, error }); // Debug log
+      .limit(limit)
     
     return { data, error }
   } catch (err) {
-    console.error('Get messages catch error:', err); // Debug log
     return { data: [], error: err }
   }
 }
 
 export const subscribeToMessages = (callback) => {
   if (!supabase) {
-    console.warn('Supabase not configured - real-time subscriptions disabled')
     return { unsubscribe: () => {} }
   }
   
@@ -187,8 +248,8 @@ export const subscribeToMessages = (callback) => {
 
 // User profile functions
 export const getUserProfile = async (userId) => {
-  if (!supabase) {
-    return { data: null, error: { message: 'Supabase not configured' } }
+  if (!supabase || !userId) {
+    return { data: null, error: { message: 'Invalid parameters' } }
   }
   
   try {
@@ -205,8 +266,8 @@ export const getUserProfile = async (userId) => {
 }
 
 export const updateUserProfile = async (userId, profileData) => {
-  if (!supabase) {
-    return { data: null, error: { message: 'Supabase not configured' } }
+  if (!supabase || !userId || !profileData) {
+    return { data: null, error: { message: 'Invalid parameters' } }
   }
   
   try {
@@ -223,8 +284,8 @@ export const updateUserProfile = async (userId, profileData) => {
 }
 
 export const insertUserProfile = async (profileData) => {
-  if (!supabase) {
-    return { data: null, error: { message: 'Supabase not configured' } }
+  if (!supabase || !profileData) {
+    return { data: null, error: { message: 'Invalid parameters' } }
   }
   
   try {
@@ -237,9 +298,4 @@ export const insertUserProfile = async (profileData) => {
   } catch (err) {
     return { data: null, error: err }
   }
-}
-
-// Log status
-if (!isValidConfig) {
-  console.warn('⚠️ Supabase belum dikonfigurasi. Chat room tidak akan berfungsi. Silakan setup Supabase terlebih dahulu.')
 }
