@@ -45,10 +45,10 @@ export default function SupabaseStatus() {
 
   const getStatusText = () => {
     switch (status) {
-      case 'connected': return '✅ Supabase Connected';
-      case 'error': return '❌ Supabase Error';
-      case 'not-configured': return '⚙️ Setup Required';
-      default: return '🔄 Checking Connection...';
+      case 'connected': return 'Supabase Connected';
+      case 'error': return 'Supabase Error';
+      case 'not-configured': return 'Setup Required';
+      default: return 'Checking Connection...';
     }
   };
 

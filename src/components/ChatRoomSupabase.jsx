@@ -288,7 +288,7 @@ export default function ChatRoom() {
       <div className="bg-zinc-900 border border-gray-700 p-6 rounded-xl shadow-lg max-w-xl mx-auto mt-5">
         <h2 className="text-2xl font-bold text-center mb-4 text-white">ChatRoom</h2>
         <div className="text-center py-8">
-          <div className="text-yellow-400 text-6xl mb-4">⚙️</div>
+          <div className="text-yellow-400 text-6xl mb-4"></div>
           <h3 className="text-xl font-semibold text-white mb-2">Setup Required</h3>
           <p className="text-gray-300 mb-4">
             Chat room memerlukan konfigurasi Supabase untuk berfungsi.
@@ -300,10 +300,10 @@ export default function ChatRoom() {
               <li>Jalankan SQL dari file <code className="bg-zinc-700 px-1 rounded">supabase-schema.sql</code></li>
               <li>Setup Google OAuth provider:
                 <ul className="ml-4 mt-2 space-y-1 text-xs">
-                  <li>• Buka Supabase Dashboard → Authentication → Providers</li>
-                  <li>• Enable Google provider</li>
-                  <li>• Masukkan Google OAuth Client ID & Secret</li>
-                  <li>• Tambahkan redirect URL: <code className="bg-zinc-700 px-1 rounded text-xs">https://your-project.supabase.co/auth/v1/callback</code></li>
+                  <li>Buka Supabase Dashboard → Authentication → Providers</li>
+                  <li>Enable Google provider</li>
+                  <li>Masukkan Google OAuth Client ID & Secret</li>
+                  <li>Tambahkan redirect URL: <code className="bg-zinc-700 px-1 rounded text-xs">https://your-project.supabase.co/auth/v1/callback</code></li>
                 </ul>
               </li>
               <li>Update file <code className="bg-zinc-700 px-1 rounded">.env.local</code> dengan credentials</li>
@@ -383,7 +383,7 @@ export default function ChatRoom() {
           {/* Debug info */}
           {messages.length === 0 && (
             <div className="text-center text-gray-400 py-8">
-              <p>No messages yet. Be the first to say hello! 👋</p>
+              <p>No messages yet. Be the first to say hello!</p>
               <p className="text-xs mt-2">Messages count: {messages.length}</p>
             </div>
           )}
@@ -465,13 +465,12 @@ export default function ChatRoom() {
             {authError && !authStatus && (
               <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3 mb-4 w-full">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-red-400 rounded-full" />
                   <span className="text-red-300 text-sm font-medium">OAuth Error</span>
                 </div>
                 <p className="text-red-200 text-sm mt-1">{authError}</p>
                 {authError.includes('deleted_client') || authError.includes('Google OAuth client') ? (
                   <div className="mt-3 p-2 bg-yellow-500/10 border border-yellow-500/30 rounded text-xs">
-                    <p className="text-yellow-200 font-medium mb-1">🔧 Solusi:</p>
+                    <p className="text-yellow-200 font-medium mb-1">Solusi:</p>
                     <p className="text-yellow-100">
                       1. Buka Supabase Dashboard → Authentication → Providers<br/>
                       2. Konfigurasi ulang Google OAuth dengan Client ID & Secret baru<br/>
@@ -537,16 +536,9 @@ export default function ChatRoom() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 disabled:cursor-not-allowed text-white py-2 rounded-lg transition text-sm font-medium flex items-center justify-center gap-2"
+                  className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 disabled:cursor-not-allowed text-white py-2 rounded-lg transition text-sm font-medium"
                 >
-                  {isProcessing ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      Mengirim...
-                    </>
-                  ) : (
-                    'Kirim Magic Link'
-                  )}
+                  {isProcessing ? 'Mengirim...' : 'Kirim Magic Link'}
                 </button>
                 <p className="text-xs text-gray-400 text-center">
                   Kami akan mengirim link login ke email Anda
@@ -562,22 +554,13 @@ export default function ChatRoom() {
                   disabled={isProcessing}
                   className="flex items-center justify-center gap-3 w-full bg-white text-gray-800 px-5 py-3 rounded-lg shadow hover:bg-gray-200 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
                 >
-                  {isProcessing ? (
-                    <div className="w-5 h-5 border-2 border-gray-400 border-t-gray-800 rounded-full animate-spin"></div>
-                  ) : (
-                    <img
-                      src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                      alt="Google logo"
-                      className="w-5 h-5"
-                    />
-                  )}
                   {isProcessing ? 'Menghubungkan...' : 'Login with Google'}
                 </button>
                 <p className="text-xs text-gray-400 text-center">
                   Cepat dan mudah dengan akun Google Anda
                 </p>
                 <p className="text-xs text-yellow-400 text-center">
-                  ⚠️ Saat ini Google OAuth sedang bermasalah. Gunakan Magic Link atau Email.
+                  Saat ini Google OAuth sedang bermasalah. Gunakan Magic Link atau Email.
                 </p>
               </div>
             )}
@@ -617,16 +600,9 @@ export default function ChatRoom() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed text-white py-2 rounded-lg transition text-sm font-medium flex items-center justify-center gap-2"
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed text-white py-2 rounded-lg transition text-sm font-medium"
                 >
-                  {isProcessing ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      {isSignUp ? 'Mendaftar...' : 'Masuk...'}
-                    </>
-                  ) : (
-                    isSignUp ? 'Daftar' : 'Login'
-                  )}
+                  {isProcessing ? (isSignUp ? 'Mendaftar...' : 'Masuk...') : (isSignUp ? 'Daftar' : 'Login')}
                 </button>
                 <button
                   type="button"

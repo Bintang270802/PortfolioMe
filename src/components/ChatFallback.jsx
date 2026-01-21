@@ -7,7 +7,7 @@ export default function ChatFallback() {
     {
       id: 1,
       user_name: 'System',
-      message: 'Selamat datang di demo chat room! 👋',
+      message: 'Selamat datang di demo chat room!',
       created_at: new Date().toISOString(),
       isSystem: true
     }

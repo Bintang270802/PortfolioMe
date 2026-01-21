@@ -29,17 +29,17 @@ export default function AvatarDebug({ user }) {
       img.crossOrigin = 'anonymous';
       
       img.onload = () => {
-        setUrlTestResult('✅ URL is accessible');
+        setUrlTestResult('URL is accessible');
       };
       
       img.onerror = () => {
-        setUrlTestResult('❌ URL failed to load (CORS or invalid)');
+        setUrlTestResult('URL failed to load (CORS or invalid)');
       };
       
       img.src = url;
       
     } catch (error) {
-      setUrlTestResult(`❌ Error: ${error.message}`);
+      setUrlTestResult(`Error: ${error.message}`);
     }
   };
 

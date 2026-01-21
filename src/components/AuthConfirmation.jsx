@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiMail, FiCheckCircle, FiClock, FiRefreshCw, FiShield } from 'react-icons/fi';
+
 import AppLogo from './AppLogo';
 import SecurityTips from './SecurityTips';
 
@@ -26,7 +26,6 @@ export default function AuthConfirmation({
     switch (type) {
       case 'signup':
         return {
-          icon: <FiMail className="w-16 h-16 text-blue-400" />,
           title: 'Konfirmasi Pendaftaran Anda',
           subtitle: 'Verifikasi email diperlukan untuk melanjutkan',
           message: `Kami telah mengirimkan email konfirmasi ke alamat email Anda. Silakan periksa inbox dan klik link verifikasi untuk mengaktifkan akun Anda.`,
@@ -36,7 +35,6 @@ export default function AuthConfirmation({
         };
       case 'magic-link':
         return {
-          icon: <FiShield className="w-16 h-16 text-green-400" />,
           title: 'Magic Link Terkirim',
           subtitle: 'Link login aman telah dikirim',
           message: `Magic link telah dikirim ke ${email}. Klik link tersebut untuk login secara otomatis tanpa password.`,
@@ -46,7 +44,6 @@ export default function AuthConfirmation({
         };
       case 'email-verification':
         return {
-          icon: <FiCheckCircle className="w-16 h-16 text-emerald-400" />,
           title: 'Verifikasi Email Berhasil',
           subtitle: 'Akun Anda telah diaktifkan',
           message: 'Selamat! Email Anda telah berhasil diverifikasi. Anda sekarang dapat menggunakan semua fitur aplikasi.',
@@ -56,7 +53,6 @@ export default function AuthConfirmation({
         };
       default:
         return {
-          icon: <FiMail className="w-16 h-16 text-blue-400" />,
           title: 'Konfirmasi Email',
           subtitle: 'Periksa email Anda',
           message: 'Silakan periksa email Anda untuk instruksi selanjutnya.',
@@ -79,18 +75,6 @@ export default function AuthConfirmation({
           {/* Background pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
           
-          {/* App Logo */}
-          <div className="relative mb-6 flex justify-center">
-            <AppLogo size="lg" variant="icon-only" animated={true} className="logo-float" />
-          </div>
-
-          {/* Status Icon */}
-          <div className="relative mb-4 flex justify-center">
-            <div className="p-3 bg-white/10 rounded-full backdrop-blur-sm">
-              {content.icon}
-            </div>
-          </div>
-
           {/* Title */}
           <h2 className="text-2xl font-bold text-white mb-2">
             {content.title}
@@ -112,7 +96,6 @@ export default function AuthConfirmation({
             
             {email && (
               <div className="mt-3 flex items-center gap-2 text-xs">
-                <FiMail className="w-4 h-4 text-blue-400" />
                 <span className="text-blue-300 font-mono">{email}</span>
               </div>
             )}
@@ -122,7 +105,6 @@ export default function AuthConfirmation({
           {type === 'magic-link' && (
             <div className="mb-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
               <div className="flex items-center gap-2 text-yellow-300 text-sm">
-                <FiClock className="w-4 h-4" />
                 <span>
                   {canResend 
                     ? 'Anda dapat mengirim ulang magic link sekarang' 
@@ -140,7 +122,6 @@ export default function AuthConfirmation({
               onClick={() => window.open('mailto:', '_blank')}
               className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center gap-2 btn-hover-scale"
             >
-              <FiMail className="w-5 h-5" />
               {content.actionText}
             </button>
 
@@ -155,7 +136,6 @@ export default function AuthConfirmation({
                     : 'bg-gray-600/20 text-gray-400 cursor-not-allowed border border-gray-600/20'
                 }`}
               >
-                <FiRefreshCw className={`w-4 h-4 ${!canResend ? 'animate-spin' : ''}`} />
                 Kirim Ulang Magic Link
               </button>
             )}

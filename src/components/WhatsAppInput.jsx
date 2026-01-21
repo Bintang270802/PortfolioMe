@@ -84,7 +84,7 @@ export default function WhatsAppInput({
           value={value}
           onChange={handleInputChange}
           placeholder={placeholder}
-          className={`w-full bg-zinc-900/50 backdrop-blur-sm border rounded-xl pl-16 pr-12 py-4 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 transition-all duration-300 text-base font-medium ${
+          className={`w-full bg-zinc-900/50 backdrop-blur-sm border rounded-xl pl-16 pr-4 py-4 text-white placeholder-zinc-400 focus:outline-none focus:ring-2 transition-all duration-300 text-base font-medium ${
             value.length > 0
               ? isValid
                 ? 'border-green-500/50 focus:border-green-500 focus:ring-green-500/20 bg-green-500/5'
@@ -95,21 +95,6 @@ export default function WhatsAppInput({
           aria-describedby={`${name}-helper`}
           aria-invalid={value.length > 0 && !isValid}
         />
-
-        {/* Validation Icon */}
-        {value.length > 0 && (
-          <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              isValid ? 'bg-green-500/20' : 'bg-red-500/20'
-            }`}>
-              {isValid ? (
-                <span className="text-green-400 text-sm font-bold" aria-label="Valid number">✓</span>
-              ) : (
-                <span className="text-red-400 text-sm font-bold" aria-label="Invalid number">✗</span>
-              )}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Status and Helper Section */}
@@ -128,8 +113,8 @@ export default function WhatsAppInput({
           >
             {value.length > 0
               ? isValid
-                ? `✓ Nomor valid: ${getFullPhoneNumber()}`
-                : error || '✗ Format nomor tidak valid'
+                ? `Nomor valid: ${getFullPhoneNumber()}`
+                : error || 'Format nomor tidak valid'
               : helperText
             }
           </p>
@@ -150,18 +135,13 @@ export default function WhatsAppInput({
         {/* Format Examples - Only show when there's an error */}
         {!isValid && value.length > 0 && (
           <div className="bg-red-500/10 backdrop-blur-sm border border-red-500/30 rounded-xl p-4">
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 bg-red-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span className="text-red-400 text-xs font-bold">✗</span>
-              </div>
-              <div className="flex-1">
-                <p className="text-red-300 text-sm font-medium mb-2">Contoh format yang benar:</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-red-200/80">
-                  <div>• 812-3456-7890</div>
-                  <div>• 821-2345-6789</div>
-                  <div>• 851-2345-6789</div>
-                  <div>• 877-1234-5678</div>
-                </div>
+            <div className="flex-1">
+              <p className="text-red-300 text-sm font-medium mb-2">Contoh format yang benar:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-sm text-red-200/80">
+                <div>812-3456-7890</div>
+                <div>821-2345-6789</div>
+                <div>851-2345-6789</div>
+                <div>877-1234-5678</div>
               </div>
             </div>
           </div>
@@ -171,15 +151,11 @@ export default function WhatsAppInput({
         {showPreview && (
           <div className="bg-green-500/10 backdrop-blur-sm border border-green-500/30 rounded-xl p-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-sm font-bold">✓</span>
-              </div>
               <div className="flex-1">
                 <p className="text-green-300 text-sm font-medium">Nomor WhatsApp siap digunakan</p>
                 <p className="text-green-200/80 text-sm font-mono">{getFullPhoneNumber()}</p>
               </div>
               <div className="flex items-center gap-1 text-green-400">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="text-xs font-medium">Ready</span>
               </div>
             </div>

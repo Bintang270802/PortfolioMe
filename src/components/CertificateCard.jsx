@@ -44,24 +44,24 @@ const CertificateCard = ({ sertifikat }) => {
     switch (categoryText) {
       case 'Network & Infrastructure':
       case 'Jaringan & Infrastruktur':
-        return '🌐';
+        return '';
       case 'IT Fundamentals':
       case 'Dasar IT':
-        return '💻';
+        return '';
       case 'Office Productivity':
       case 'Produktivitas Kantor':
-        return '📊';
+        return '';
       case 'Database Management':
       case 'Manajemen Database':
-        return '🗄️';
+        return '';
       case 'Enterprise Systems':
       case 'Sistem Enterprise':
-        return '🏢';
+        return '';
       case 'Professional Development':
       case 'Pengembangan Profesional':
-        return '🎓';
+        return '';
       default:
-        return '🏆';
+        return '';
     }
   };
 
