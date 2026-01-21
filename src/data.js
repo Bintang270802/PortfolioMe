@@ -516,7 +516,7 @@ export const listPengalaman = [
         "Implemented CI/CD pipeline that reduced deployment time by 60%"
       ]
     },
-    logo: "./assets/companies/erno.jpg",
+    logo: "/assets/companies/erno.jpg",
     warna: "#3B82F6",
     dad: "100"
   },
@@ -565,7 +565,7 @@ export const listPengalaman = [
       "Supported MKVI business processes through a stable and well-structured digital system"
     ]
   },
-  logo: "./assets/companies/mkvi.jpg",
+  logo: "/assets/companies/mkvi.jpg",
   warna: "#10B981",
   dad: "200"
 },
@@ -612,7 +612,7 @@ export const listPengalaman = [
         "Reduced material waste by up to 15% through process optimization",
       ]
     },
-    logo: "./assets/companies/Grafindo.jpeg",
+    logo: "/assets/companies/Grafindo.jpeg",
     warna: "#F59E0B",
     dad: "300"
   }

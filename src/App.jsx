@@ -65,7 +65,7 @@ function App() {
       performance.getEntriesByType("navigation")[0]?.type === "reload";
 
     if (isReload) {
-      const baseUrl = window.location.origin + "/portofolio/";
+      const baseUrl = window.location.origin + "/";
       window.location.replace(baseUrl);
     }
   }, []);
@@ -108,7 +108,7 @@ function App() {
             {/* Content */}
             <div className="animate__animated animate__fadeInUp animate__delay-3s order-2 lg:order-1">
               <div className="flex items-center gap-3 mb-6 bg-gradient-to-r from-zinc-800 to-zinc-700 w-fit p-3 sm:p-4 rounded-2xl border border-zinc-600/50 shadow-lg hover:shadow-violet-500/20 transition-all duration-300">
-                <img src="./assets/bintang1.jpeg" className="w-8 sm:w-10 rounded-md" alt="Profile" />
+                <img src="/assets/bintang1.jpeg" className="w-8 sm:w-10 rounded-md" alt="Profile" />
                 <q className="text-white font-semibold text-sm sm:text-base">
                   <RotatingText 
                     texts={t('hero.rotatingQuotes')} 
@@ -134,7 +134,7 @@ function App() {
               
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <a 
-                  href="./assets/CV.pdf" 
+                  href="/assets/CV.pdf" 
                   download="Tri_Bintang_Saputra_CV.pdf" 
                   className="w-full sm:w-auto font-semibold bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 p-3 sm:p-4 px-6 sm:px-8 rounded-full border border-violet-500/30 hover:border-violet-400/50 transition-all duration-300 hover:scale-105 text-center"
                 >
@@ -158,7 +158,7 @@ function App() {
                   handle="Bintang"
                   status="Online"
                   contactText="Contact Me"
-                  avatarUrl="./assets/bintang.jpeg"
+                  avatarUrl="/assets/bintang.jpeg"
                   showUserInfo={true}
                   enableTilt={true}
                   enableMobileTilt={false}
