@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { FiSearch, FiFilter, FiX } from 'react-icons/fi';
 import { useLanguage } from '../../hooks/useLanguage';
 
@@ -64,7 +64,7 @@ const ProjectFilter = ({ projects, onFilteredProjects, className = "" }) => {
   }, [projects, searchTerm, selectedTech]);
 
   // Update parent component when filtered projects change
-  useMemo(() => {
+  useEffect(() => {
     onFilteredProjects(filteredProjects);
   }, [filteredProjects, onFilteredProjects]);
 

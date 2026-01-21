@@ -3,9 +3,11 @@ import { FiX, FiGithub, FiExternalLink } from 'react-icons/fi';
 import { SiFigma } from 'react-icons/si';
 import { useLanguage } from '../../hooks/useLanguage';
 import { getLocalizedText } from '../../data';
+import DevelopmentPopup from '../DevelopmentPopup/DevelopmentPopup';
 
 const ProjectModal = ({ isOpen, onClose, project }) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [showDevelopmentPopup, setShowDevelopmentPopup] = useState(false);
   const { t, language } = useLanguage();
 
   const handleClose = () => {
@@ -14,6 +16,19 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
       onClose();
       setIsClosing(false);
     }, 300);
+  };
+
+  const handleLiveDemoClick = (e) => {
+    e.preventDefault();
+    
+    // Check if project is in development
+    if (project.status === 'development') {
+      setShowDevelopmentPopup(true);
+      return;
+    }
+    
+    // If not in development, open the live demo
+    window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
   };
 
   useEffect(() => {
@@ -71,15 +86,23 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
             
             {/* Tech Stack Icons (if available) */}
             <div className="mt-4 flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-violet-500/20 text-violet-300 text-xs font-medium rounded-full border border-violet-500/30">
-                React
-              </span>
-              <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-medium rounded-full border border-blue-500/30">
-                JavaScript
-              </span>
-              <span className="px-3 py-1 bg-green-500/20 text-green-300 text-xs font-medium rounded-full border border-green-500/30">
-                Node.js
-              </span>
+              {project.technologies && project.technologies.slice(0, 4).map((tech, index) => (
+                <span 
+                  key={index}
+                  className={`px-3 py-1 text-xs font-medium rounded-full border ${
+                    index % 3 === 0 ? 'bg-violet-500/20 text-violet-300 border-violet-500/30' :
+                    index % 3 === 1 ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' :
+                    'bg-green-500/20 text-green-300 border-green-500/30'
+                  }`}
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.technologies && project.technologies.length > 4 && (
+                <span className="px-3 py-1 bg-zinc-600/20 text-zinc-400 text-xs font-medium rounded-full border border-zinc-600/30">
+                  +{project.technologies.length - 4} more
+                </span>
+              )}
             </div>
           </div>
 
@@ -101,11 +124,11 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
             {/* Project Stats */}
             <div className="mt-6 grid grid-cols-2 gap-4 p-4 bg-zinc-800/50 rounded-lg border border-zinc-700">
               <div className="text-center">
-                <div className="text-violet-400 font-bold text-lg">2024</div>
+                <div className="text-violet-400 font-bold text-lg">{project.year || '2024'}</div>
                 <div className="text-zinc-400 text-xs">{t('projects.year')}</div>
               </div>
               <div className="text-center">
-                <div className="text-violet-400 font-bold text-lg">Mobile & Web</div>
+                <div className="text-violet-400 font-bold text-lg">{project.platform || 'Mobile & Web'}</div>
                 <div className="text-zinc-400 text-xs">{t('projects.platform')}</div>
               </div>
             </div>
@@ -141,19 +164,33 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
 
             {/* Live Demo Button */}
             {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 font-semibold bg-green-600 hover:bg-green-700 text-white p-3 px-5 rounded-lg transition-all duration-300 hover:scale-105"
+              <button
+                onClick={handleLiveDemoClick}
+                className={`flex-1 inline-flex items-center justify-center gap-2 font-semibold p-3 px-5 rounded-lg transition-all duration-300 hover:scale-105 ${
+                  project.status === 'development' 
+                    ? 'bg-orange-600 hover:bg-orange-700 text-white' 
+                    : 'bg-green-600 hover:bg-green-700 text-white'
+                }`}
               >
                 <FiExternalLink />
-                <span>{t('projects.liveDemo')}</span>
-              </a>
+                <span>
+                  {project.status === 'development' 
+                    ? 'Live Demo (Development)' 
+                    : t('projects.liveDemo')
+                  }
+                </span>
+              </button>
             )}
           </div>
         </div>
       </div>
+
+      {/* Development Popup */}
+      <DevelopmentPopup
+        isOpen={showDevelopmentPopup}
+        onClose={() => setShowDevelopmentPopup(false)}
+        projectName={getLocalizedText(project.title, language)}
+      />
 
       {/* Custom Scrollbar Styles */}
       <style>{`

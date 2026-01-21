@@ -105,6 +105,30 @@ export const ChromaGrid = ({
         >
           <div className="chroma-img-wrapper">
             <img src={c.image} alt={getLocalizedText(c.title, language)} loading="lazy" />
+            
+            {/* Development Badge */}
+            {c.status === 'development' && (
+              <div className="absolute top-3 right-3 z-10">
+                <div className="bg-orange-500/90 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full border border-orange-400/50 shadow-lg">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+                    <span>DEV</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* New Badge */}
+            {c.status === 'new' && (
+              <div className="absolute top-3 right-3 z-10">
+                <div className="bg-gradient-to-r from-green-500/90 to-emerald-500/90 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full border border-green-400/50 shadow-lg">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" />
+                    <span>NEW</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <footer className="chroma-info">
             <h3 className="name">{getLocalizedText(c.title, language)}</h3>

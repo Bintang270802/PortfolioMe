@@ -175,8 +175,7 @@ import quisubs from "/assets/proyek/quisubs.png";
 import videoubs from "/assets/proyek/videoubs.png";
 import mkvi from "/assets/proyek/mkvi.png";
 import rfidAttendance from "/assets/proyek/rfid.png";
-// Using profile image as placeholder for PT. ESSAI until actual image is added
-import essaiCompany from "/assets/proyek/profile.jpeg";
+import portfolio from "/assets/proyek/profile.jpeg";
 
 // Helper function to get localized text
 export const getLocalizedText = (textObj, language) => {
@@ -200,12 +199,14 @@ export const listProyek = [
       id: "LPK ZEN Global Indonesia merupakan lembaga pelatihan kerja yang bergerak di bidang pengembangan sumber daya manusia dengan fokus pada persiapan dan penempatan tenaga kerja ke luar negeri, khususnya ke Jepang dan Korea. Lembaga ini berkomitmen untuk mencetak tenaga kerja yang kompeten, profesional, dan siap bersaing di pasar kerja internasional melalui program pelatihan yang terstruktur dan berstandar global | LPK ZEN Global Indonesia menyediakan berbagai program pelatihan yang mencakup pelatihan bahasa asing (Bahasa Jepang dan Korea), pembekalan budaya kerja, pengembangan keterampilan teknis, serta peningkatan soft skills yang dibutuhkan di dunia industri luar negeri. Seluruh program dirancang untuk menyesuaikan dengan kebutuhan industri dan regulasi ketenagakerjaan negara tujuan.",
       en: "LPK ZEN Global Indonesia is a job training institution engaged in human resource development with a focus on preparation and placement of workers abroad, especially to Japan and Korea. This institution is committed to producing competent, professional workers who are ready to compete in the international job market through structured and globally standardized training programs | LPK ZEN Global Indonesia provides various training programs that include foreign language training (Japanese and Korean), work culture briefing, technical skills development, and soft skills improvement needed in overseas industries. All programs are designed to adapt to industry needs and employment regulations of destination countries."
     },
-    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+    technologies: ["React.js", "TypeScript", "Bun.js", "Tailwind"],
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
     url: "https://github.com/Bintang270802",
     figmaUrl: "https://www.figma.com/design/lhmqavcA2vVMHwEkwkz3hS/Lpk-Zen-Global?node-id=0-1&t=kgSmoPlqeM6tcrxk-1",
     liveUrl: "https://lpkzenglobal.com/",
+    year: "2025", // Tahun yang diperbarui
+    platform: "Website", // Platform yang diperbarui
     dad: "100",
   },
   {
@@ -223,12 +224,15 @@ export const listProyek = [
       id: "aplikasi pembelajaran berbasis kuis yang dirancang untuk mendukung proses belajar secara interaktif, menarik, dan mudah diakses melalui platform Android dan Website. Aplikasi ini bertujuan untuk membantu pengguna dalam memahami materi pembelajaran sekaligus melakukan evaluasi hasil belajar secara mandiri maupun terstruktur dengan dashboard admin yang berfungsi untuk mengelola data pengguna, soal, jawaban, serta hasil penilaian secara menyeluruh. Dengan konsep full CRUD, admin dapat dengan mudah menambah, mengubah, menghapus, dan memantau data pembelajaran melalui sistem yang terintegrasi dan aman.",
       en: "A quiz-based learning application designed to support interactive, engaging, and easily accessible learning processes through Android and Website platforms. This application aims to help users understand learning materials while conducting independent or structured learning outcome evaluations with an admin dashboard that functions to manage user data, questions, answers, and assessment results comprehensively. With a full CRUD concept, admins can easily add, modify, delete, and monitor learning data through an integrated and secure system."
     },
-    technologies: ["React.js", "Node.js", "Express.js", "MySQL", "Android", "Java"],
+    technologies: ["React Native", "Express.js", "Next.js", "Node.js", "MongoDB", "Tailwind"],
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/Bintang270802",
     figmaUrl: "https://www.figma.com/design/G42hjnOf6IJU4h2Mq5gYUT/Edukasi-Pembelajaran---UBS?node-id=0-1&t=kgSmoPlqeM6tcrxk-1",
     liveUrl: "https://quisubs-demo.com",
+    year: "2025", // Tahun yang diperbarui
+    platform: "Website", // Platform yang diperbarui
+    status: "development", // Menandai bahwa project ini sedang dalam pengembangan
     dad: "200",
   },
   {
@@ -246,12 +250,14 @@ export const listProyek = [
       id: "Video UBS merupakan aplikasi video pembelajaran berbasis Android dan Website yang dirancang sebagai media pembelajaran digital untuk mendukung proses belajar mengajar secara modern, interaktif, dan fleksibel. Aplikasi ini bertujuan untuk memudahkan pengguna dalam mengakses materi pembelajaran berbentuk video kapan saja dan di mana saja Aplikasi ini juga dilengkapi dengan dashboard admin berbasis full CRUD, yang memungkinkan pengelola untuk menambahkan, mengubah, menghapus, dan mengelola data video, kategori materi, serta informasi pendukung pembelajaran secara terpusat. Hal ini memudahkan pengelolaan konten dan memastikan materi yang disajikan selalu актуal dan relevan.",
       en: "Video UBS is an Android and Website-based video learning application designed as digital learning media to support modern, interactive, and flexible teaching and learning processes. This application aims to make it easier for users to access video-based learning materials anytime and anywhere. The application is also equipped with a full CRUD-based admin dashboard, which allows managers to add, modify, delete, and manage video data, material categories, and learning support information centrally. This facilitates content management and ensures that the materials presented are always current and relevant."
     },
-    technologies: ["React.js", "Node.js", "Express.js", "MySQL", "Android", "Java", "Video Streaming"],
+    technologies: ["PHP", "Laravel", "PHPMyAdmin", "JavaScript", "React Native"],
     borderColor: "#3B82F6",
     gradient: "linear-gradient(145deg, #3B82F6, #000)",
     url: "https://github.com/Bintang270802",
     figmaUrl: "https://www.figma.com/design/1k285ILp5kIA3qqmoaeWUX/Proyek-UBS?node-id=0-1&t=rdJ6vasXzsIr0wlQ-1",
     liveUrl: "https://videoubs-demo.com",
+    year: "2025", // Tahun yang diperbarui
+    status: "development", // Menandai bahwa project ini sedang dalam pengembangan
     dad: "300",
   },
   {
@@ -269,35 +275,40 @@ export const listProyek = [
       id: "Sistem Absensi Siswa Berbasis RFID merupakan solusi teknologi modern yang dirancang untuk mengotomatisasi proses pencatatan kehadiran siswa di sekolah. Sistem ini menggunakan teknologi Radio Frequency Identification (RFID) yang memungkinkan siswa untuk melakukan absensi hanya dengan menempelkan kartu RFID mereka pada reader yang telah disediakan. Sistem ini terintegrasi dengan database yang menyimpan data siswa, jadwal pelajaran, dan riwayat kehadiran secara real-time | Aplikasi ini dilengkapi dengan dashboard admin berbasis web yang memungkinkan guru dan staff administrasi untuk memantau kehadiran siswa, menghasilkan laporan absensi, dan mengelola data siswa secara terpusat. Sistem juga dapat mengirimkan notifikasi otomatis kepada orang tua melalui SMS atau email ketika anak mereka terlambat atau tidak hadir, sehingga meningkatkan komunikasi antara sekolah dan orang tua.",
       en: "RFID-Based Student Attendance System is a modern technology solution designed to automate the student attendance recording process in schools. This system uses Radio Frequency Identification (RFID) technology that allows students to take attendance simply by tapping their RFID cards on the provided reader. The system is integrated with a database that stores student data, class schedules, and attendance history in real-time | The application is equipped with a web-based admin dashboard that allows teachers and administrative staff to monitor student attendance, generate attendance reports, and manage student data centrally. The system can also send automatic notifications to parents via SMS or email when their children are late or absent, thereby improving communication between school and parents."
     },
-    technologies: ["PHP", "MySQL", "JavaScript", "RFID", "Arduino", "IoT"],
+    technologies: ["CodeIgniter", "PHP", "MySQL", "RFID"],
     borderColor: "#EF4444",
     gradient: "linear-gradient(145deg, #EF4444, #000)",
     url: "https://github.com/Bintang270802",
     figmaUrl: "https://www.figma.com/design/hQ4o6Q7yxD6KuQnwlkllIT/Smp-Ulil-Albab?node-id=0-1&t=xeE4tfhR98uccZ0I-1",
     liveUrl: "https://ulilalbab.sch.id/",
+    year: "2025", // Tahun yang diperbarui
+    platform: "Website", // Platform yang diperbarui
     dad: "400",
   },
   {
     id: 5,
-    image: essaiCompany,
+    image: portfolio,
     title: {
-      id: "Website Company Profile PT. ESSAI",
-      en: "PT. ESSAI Company Profile Website"
+      id: "Portfolio",
+      en: "Portfoliome"
     },
     subtitle: {
-      id: "Pengembangan Website Company Profile PT. ESSAI sebagai Media Informasi Digital untuk Menampilkan Profil Perusahaan, Layanan, dan Portofolio Bisnis secara Profesional",
-      en: "Development of PT. ESSAI Company Profile Website as Digital Information Media to Showcase Company Profile, Services, and Business Portfolio Professionally"
+      id: "Full-Stack Developer dengan dasar kuat pada frontend, backend, dan sistem informasi berbasis web.",
+      en: "Full-Stack Developer with a strong foundation in frontend, backend, and web-based information systems."
     },
     fullDescription: {
-      id: "Website Company Profile PT. ESSAI merupakan platform digital yang dirancang untuk mempresentasikan identitas perusahaan, visi misi, layanan unggulan, dan pencapaian bisnis PT. ESSAI kepada klien potensial dan stakeholder. Website ini dikembangkan dengan pendekatan modern dan responsif untuk memastikan pengalaman pengguna yang optimal di berbagai perangkat | Website ini menampilkan informasi lengkap tentang sejarah perusahaan, tim manajemen, layanan yang ditawarkan, portofolio proyek, testimoni klien, dan informasi kontak. Desain yang profesional dan user-friendly membantu membangun kredibilitas perusahaan dan mempermudah calon klien dalam memahami kapabilitas dan keunggulan PT. ESSAI di industri yang digelutinya.",
-      en: "PT. ESSAI Company Profile Website is a digital platform designed to present the company identity, vision and mission, flagship services, and business achievements of PT. ESSAI to potential clients and stakeholders. This website is developed with a modern and responsive approach to ensure optimal user experience across various devices | The website displays complete information about company history, management team, offered services, project portfolio, client testimonials, and contact information. Professional and user-friendly design helps build company credibility and makes it easier for potential clients to understand PT. ESSAI's capabilities and advantages in their industry."
+      id: "Full-Stack Developer dengan dasar yang kuat pada pengembangan frontend, backend, dan sistem informasi berbasis web. Saya memiliki pengalaman dalam merancang, mengembangkan, dan mengimplementasikan aplikasi web dengan menggabungkan antarmuka pengguna yang bersih serta logika backend yang andal. Saya terbiasa melakukan analisis kebutuhan sistem, perancangan arsitektur aplikasi, serta mengimplementasikan desain UI/UX menjadi aplikasi web yang fungsional dan responsif | Saya memahami alur kerja pengembangan web modern, penggunaan version control dengan Git dan GitHub, serta praktik kerja kolaboratif dalam tim. Ketertarikan pada UI/UX design membantu saya menjembatani kebutuhan desain dan teknis, sehingga solusi yang dihasilkan berfokus pada pengguna. Saya memiliki karakter teliti, adaptif, dan berkomitmen untuk terus belajar serta membangun solusi web yang efisien, scalable, dan berkelanjutan.",
+      en: "Full-Stack Developer with a strong foundation in frontend, backend, and web-based information systems. I have hands-on experience in designing, developing, and implementing web applications by combining clean user interfaces with reliable backend logic. My work involves analyzing system requirements, designing application architecture, and translating UI/UX designs into functional and responsive web solutions | I am familiar with modern web development workflows, version control using Git and GitHub, and collaborative development practices. I also have a strong interest in UI/UX design, allowing me to bridge the gap between design and development to deliver user-centered digital products. Detail-oriented, adaptable, and continuously learning, I am committed to building efficient, scalable, and sustainable web-based solutions."
     },
-    technologies: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    technologies: ["React.js", "JavaScript", "Supabase", "PostgreSQL"],
     borderColor: "#8B5CF6",
     gradient: "linear-gradient(145deg, #8B5CF6, #000)",
     url: "https://github.com/Bintang270802",
     figmaUrl: "https://www.figma.com/design/pt-essai-company-profile",
-    liveUrl: "https://pt-essai.com",
+    liveUrl: "https://bintangdev.vercel.app/",
+    year: "2026", // Tahun terbaru
+    platform: "Website", // Platform yang diperbarui
+    status: "new", // Menandai sebagai project terbaru
     dad: "500",
   },
   {
@@ -315,12 +326,15 @@ export const listProyek = [
       id : "Online Photographer Service Booking Application MKVI merupakan aplikasi berbasis web yang dirancang untuk memudahkan proses pemesanan jasa fotografer secara online. Aplikasi ini dikembangkan untuk mendukung kebutuhan operasional Myer Kreatif Vision Vibe (MKVI) dalam mengelola layanan fotografi secara terstruktur, efisien, dan terintegrasi | Sistem ini memungkinkan pelanggan untuk melihat daftar layanan fotografi, memilih fotografer, menentukan jadwal pemotretan, serta melakukan pemesanan secara langsung melalui platform digital. Di sisi admin, aplikasi menyediakan dashboard manajemen untuk mengelola data fotografer, jadwal kerja, pesanan pelanggan, serta status layanan.",
       en: "The Online Photographer Service Booking Application MKVI is a web-based application designed to simplify the process of booking photographer services online. This application was developed to support the operational needs of Myer Kreatif Vision Vibe (MKVI) by managing photography services in a structured, efficient, and integrated manner | The system allows customers to browse available photography services, select photographers, schedule photo sessions, and place bookings directly through a digital platform. On the admin side, the application provides a management dashboard to handle photographer data, work schedules, customer bookings, and service status."
     },
-    technologies: ["React.js", "Express.js", "Node.js", "MySQL", "Figma", "Postman", "TypeScript", "JavaScript", "Tailwind"],
+    technologies: ["TypeScript", "MySQL", "Express.js", "Next.js", "Node.js", "Tailwind"],
     borderColor: "#10B981",
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/Bintang270802",
     figmaUrl: "https://www.figma.com/design/s6260cTlu5lJeZXNh6Iel1/mkvi?node-id=0-1&t=TggySZoA4WxLgcMJ-1",
     liveUrl: "http://localhost:5173/portofolio/",
+    year: "2024", // Tahun yang diperbarui
+    platform: "Website", // Platform yang diperbarui
+    status: "development", // Menandai bahwa project ini sedang dalam pengembangan
     dad: "600",
   },
 ];
