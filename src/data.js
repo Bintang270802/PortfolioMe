@@ -304,7 +304,7 @@ export const listProyek = [
     borderColor: "#8B5CF6",
     gradient: "linear-gradient(145deg, #8B5CF6, #000)",
     url: "https://github.com/Bintang270802",
-    figmaUrl: "https://www.figma.com/design/pt-essai-company-profile",
+    figmaUrl: "https://www.figma.com/design/FyuIArWqUblabRG2UqBmUq/Portfoliome?t=fUZsyG9dzBlDFjDZ-1",
     liveUrl: "https://bintangdev.vercel.app/",
     year: "2026", // Tahun terbaru
     platform: "Website", // Platform yang diperbarui

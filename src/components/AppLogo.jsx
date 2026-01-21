@@ -63,9 +63,6 @@ export default function AppLogo({
   if (variant === 'minimal') {
     return (
       <div className={`flex items-center gap-3 ${className}`}>
-        <div className={`${sizes.container} bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg ${animated ? 'animate-pulse' : ''}`}>
-          <FiMessageCircle className={`${sizes.icon} text-white`} />
-        </div>
         <div>
           <h3 className={`font-bold text-white ${sizes.text}`}>ChatRoom</h3>
         </div>

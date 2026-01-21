@@ -286,7 +286,7 @@ export default function ChatRoom() {
   if (!isSupabaseConfigured) {
     return (
       <div className="bg-zinc-900 border border-gray-700 p-6 rounded-xl shadow-lg max-w-xl mx-auto mt-5">
-        <h2 className="text-2xl font-bold text-center mb-4 text-white">💬 Chat Room</h2>
+        <h2 className="text-2xl font-bold text-center mb-4 text-white">ChatRoom</h2>
         <div className="text-center py-8">
           <div className="text-yellow-400 text-6xl mb-4">⚙️</div>
           <h3 className="text-xl font-semibold text-white mb-2">Setup Required</h3>
