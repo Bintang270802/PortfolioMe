@@ -42,7 +42,7 @@ export default function ChatFallback() {
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-zinc-700/50">
         <div className="flex items-center gap-3">
           <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" />
-          <span className="text-yellow-300 font-medium">Demo Chat (Offline)</span>
+          <span className="text-yellow-300 font-medium">ChatRoom (Demo Mode)</span>
         </div>
         <div className="text-xs text-zinc-400">
           {messages.length} pesan
@@ -118,7 +118,7 @@ export default function ChatFallback() {
       <div className="mt-3 pt-3 border-t border-zinc-700/50">
         <div className="flex items-center gap-2 text-xs text-zinc-400">
           <div className="w-2 h-2 bg-yellow-400 rounded-full" />
-          <span>Mode demo - pesan tidak tersimpan</span>
+          <span>Mode demo - Supabase belum dikonfigurasi. Pesan tidak tersimpan.</span>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ export const loginWithGoogle = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/portofolio/`,
+        redirectTo: `${window.location.origin}/`,
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
@@ -151,7 +151,7 @@ export const loginWithMagicLink = async (email) => {
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/portofolio/`
+        emailRedirectTo: `${window.location.origin}/`
       }
     })
     return { data, error }

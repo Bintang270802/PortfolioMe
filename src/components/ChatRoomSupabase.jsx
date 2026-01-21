@@ -284,37 +284,7 @@ export default function ChatRoom() {
   }
 
   if (!isSupabaseConfigured) {
-    return (
-      <div className="bg-zinc-900 border border-gray-700 p-6 rounded-xl shadow-lg max-w-xl mx-auto mt-5">
-        <h2 className="text-2xl font-bold text-center mb-4 text-white">ChatRoom</h2>
-        <div className="text-center py-8">
-          <div className="text-yellow-400 text-6xl mb-4"></div>
-          <h3 className="text-xl font-semibold text-white mb-2">Setup Required</h3>
-          <p className="text-gray-300 mb-4">
-            Chat room memerlukan konfigurasi Supabase untuk berfungsi.
-          </p>
-          <div className="bg-zinc-800 p-4 rounded-lg text-left text-sm">
-            <p className="text-gray-300 mb-2">Langkah setup:</p>
-            <ol className="text-gray-400 space-y-1 list-decimal list-inside">
-              <li>Buat project di <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">supabase.com</a></li>
-              <li>Jalankan SQL dari file <code className="bg-zinc-700 px-1 rounded">supabase-schema.sql</code></li>
-              <li>Setup Google OAuth provider:
-                <ul className="ml-4 mt-2 space-y-1 text-xs">
-                  <li>Buka Supabase Dashboard → Authentication → Providers</li>
-                  <li>Enable Google provider</li>
-                  <li>Masukkan Google OAuth Client ID & Secret</li>
-                  <li>Tambahkan redirect URL: <code className="bg-zinc-700 px-1 rounded text-xs">https://your-project.supabase.co/auth/v1/callback</code></li>
-                </ul>
-              </li>
-              <li>Update file <code className="bg-zinc-700 px-1 rounded">.env.local</code> dengan credentials</li>
-            </ol>
-            <p className="text-gray-400 mt-3 text-xs">
-              Lihat file <code className="bg-zinc-700 px-1 rounded">SUPABASE_SETUP.md</code> untuk panduan lengkap.
-            </p>
-          </div>
-        </div>
-      </div>
-    );
+    return <ChatFallback />;
   }
 
   // Show fallback if requested or if there are persistent auth errors

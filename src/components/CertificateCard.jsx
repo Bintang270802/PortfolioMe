@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { RiAwardLine, RiCalendarLine, RiVerifiedBadgeLine, RiImageLine } from 'react-icons/ri';
 import { useLanguage } from '../hooks/useLanguage';
 import { getLocalizedText } from '../data';
 
@@ -7,7 +6,11 @@ const CertificateCard = ({ sertifikat }) => {
   const [imageError, setImageError] = useState(false);
   const { t, language } = useLanguage();
 
+  // Debug: log image path
+  console.log('Certificate image path:', sertifikat.gambar);
+
   const handleImageError = () => {
+    console.log('Image failed to load:', sertifikat.gambar);
     setImageError(true);
   };
 
@@ -98,9 +101,6 @@ const CertificateCard = ({ sertifikat }) => {
               {getCategoryIcon(sertifikat.kategori)}
             </div>
             
-            {/* Image Icon */}
-            <RiImageLine className="text-4xl text-gray-400 mb-2" />
-            
             {/* Certificate Text */}
             <span className="text-white text-sm font-medium text-center px-4">
               {getLocalizedText(sertifikat.nama, language)}
@@ -125,13 +125,13 @@ const CertificateCard = ({ sertifikat }) => {
 
         {/* Verified Badge */}
         <div className="absolute top-3 right-3">
-          <RiVerifiedBadgeLine className="text-2xl text-green-400 drop-shadow-lg" />
+          <div className="text-2xl text-green-400 drop-shadow-lg font-bold">✓</div>
         </div>
 
         {/* Hover Overlay */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-            <RiAwardLine className="text-2xl text-white" />
+            <span className="text-2xl text-white font-bold">CERT</span>
           </div>
         </div>
       </div>
@@ -145,13 +145,11 @@ const CertificateCard = ({ sertifikat }) => {
 
         {/* Issuer */}
         <div className="flex items-center gap-2 mb-2">
-          <RiAwardLine className="text-violet-400 text-sm flex-shrink-0" />
           <span className="text-violet-300 font-semibold text-sm truncate">{sertifikat.penerbit}</span>
         </div>
 
         {/* Date */}
         <div className="flex items-center gap-2 mb-3">
-          <RiCalendarLine className="text-gray-400 text-sm flex-shrink-0" />
           <span className="text-gray-400 text-sm">{sertifikat.tanggal}</span>
         </div>
 

@@ -331,7 +331,7 @@ export const listProyek = [
     gradient: "linear-gradient(180deg, #10B981, #000)",
     url: "https://github.com/Bintang270802",
     figmaUrl: "https://www.figma.com/design/s6260cTlu5lJeZXNh6Iel1/mkvi?node-id=0-1&t=TggySZoA4WxLgcMJ-1",
-    liveUrl: "http://localhost:5173/portofolio/",
+    liveUrl: "https://portfolio-me-bintang.vercel.app/",
     year: "2024", // Tahun yang diperbarui
     platform: "Website", // Platform yang diperbarui
     status: "development", // Menandai bahwa project ini sedang dalam pengembangan
@@ -349,13 +349,13 @@ export const listSertifikat = [
     },
     penerbit: "Cisco",
     tanggal: "2024",
-    gambar: "/portofolio/assets/sertifikat/ccna.jpg",
+    gambar: "/assets/sertifikat/ccna.jpg",
     deskripsi: {
       id: "Sertifikasi jaringan komputer dan infrastruktur IT dari Cisco Systems",
       en: "Computer networking and IT infrastructure certification from Cisco Systems"
     },
     kredensial: "Universitas Bani Saleh",
-    url: "/portofolio/assets/sertifikat/ccna.jpg",
+    url: "/assets/sertifikat/ccna.jpg",
     kategori: {
       id: "Jaringan & Infrastruktur",
       en: "Network & Infrastructure"
@@ -370,13 +370,13 @@ export const listSertifikat = [
     },
     penerbit: "Cisco Networking Academy",
     tanggal: "2024",
-    gambar: "/portofolio/assets/sertifikat/essentials.jpg",
+    gambar: "/assets/sertifikat/essentials.jpg",
     deskripsi: {
       id: "Sertifikasi dasar-dasar teknologi informasi dan troubleshooting hardware",
       en: "Information technology fundamentals and hardware troubleshooting certification"
     },
     kredensial: "Universitas Bani Saleh",
-    url: "/portofolio/assets/sertifikat/essentials.jpg",
+    url: "/assets/sertifikat/essentials.jpg",
     kategori: {
       id: "Dasar IT",
       en: "IT Fundamentals"
@@ -391,13 +391,13 @@ export const listSertifikat = [
     },
     penerbit: "Microsoft",
     tanggal: "2024",
-    gambar: "/portofolio/assets/sertifikat/office.jpg",
+    gambar: "/assets/sertifikat/office.jpg",
     deskripsi: {
       id: "Sertifikasi keahlian dalam menggunakan aplikasi Microsoft Office Suite",
       en: "Proficiency certification in using Microsoft Office Suite applications"
     },
     kredensial: "25DIP00015",
-    url: "/portofolio/assets/sertifikat/office.jpg",
+    url: "/assets/sertifikat/office.jpg",
     kategori: {
       id: "Produktivitas Kantor",
       en: "Office Productivity"
@@ -412,13 +412,13 @@ export const listSertifikat = [
     },
     penerbit: "Oracle Corporation",
     tanggal: "2024",
-    gambar: "/portofolio/assets/sertifikat/oracle.jpg",
+    gambar: "/assets/sertifikat/oracle.jpg",
     deskripsi: {
       id: "Sertifikasi administrasi dan pengembangan database Oracle",
       en: "Oracle database administration and development certification"
     },
     kredensial: "20/TR/DB/RHD/2023-1/2024",
-    url: "/portofolio/assets/sertifikat/oracle.jpg",
+    url: "/assets/sertifikat/oracle.jpg",
     kategori: {
       id: "Manajemen Database",
       en: "Database Management"
@@ -433,13 +433,13 @@ export const listSertifikat = [
     },
     penerbit: "SAP",
     tanggal: "2024",
-    gambar: "/portofolio/assets/sertifikat/sap.jpg",
+    gambar: "/assets/sertifikat/sap.jpg",
     deskripsi: {
       id: "Sertifikasi sistem enterprise resource planning (ERP) SAP",
       en: "SAP enterprise resource planning (ERP) system certification"
     },
     kredensial: "550171397",
-    url: "/portofolio/assets/sertifikat/sap.jpg",
+    url: "/assets/sertifikat/sap.jpg",
     kategori: {
       id: "Sistem Enterprise",
       en: "Enterprise Systems"
@@ -454,13 +454,13 @@ export const listSertifikat = [
     },
     penerbit: "Programming Community",
     tanggal: "2024",
-    gambar: "/portofolio/assets/sertifikat/seminar.jpg",
+    gambar: "/assets/sertifikat/seminar.jpg",
     deskripsi: {
       id: "Sertifikat kehadiran seminar pengembangan software dan best practices programming",
       en: "Attendance certificate for software development seminar and programming best practices"
     },
     kredensial: "Universitas Bani Saleh",
-    url: "/portofolio/assets/sertifikat/seminar.jpg",
+    url: "/assets/sertifikat/seminar.jpg",
     kategori: {
       id: "Pengembangan Profesional",
       en: "Professional Development"
