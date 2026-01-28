@@ -9,12 +9,15 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
+    chunkSizeWarningLimit: 1000, // Increase chunk size warning limit to 1000kb
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
-          supabase: ['@supabase/supabase-js']
+          three: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/rapier'],
+          supabase: ['@supabase/supabase-js'],
+          icons: ['react-icons'],
+          animations: ['gsap', 'aos', 'animate.css']
         }
       }
     }
