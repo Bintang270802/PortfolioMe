@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import { useLanguage } from './hooks/useLanguage';
 import { useToast } from './hooks/useToast';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
-import { useResponsive } from './hooks/useResponsive';
 import { usePageTracking, useScrollTracking, useErrorTracking } from './hooks/useAnalytics';
 import { trackProjectView, trackFilter } from './utils/analytics';
 import ProfileCard from "./components/ProfileCard/ProfileCard";
@@ -42,7 +41,6 @@ function App() {
   
   // Custom hooks
   useSmoothScroll(80); // Enable smooth scrolling with 80px offset
-  const { isMobile, isTablet, isDesktop } = useResponsive();
   
   // Toast system
   const { toasts, removeToast } = useToast();
@@ -175,7 +173,7 @@ function App() {
                   showUserInfo={true}
                   enableTilt={true}
                   enableMobileTilt={false}
-                  onContactClick={() => console.log('Contact clicked')}
+                  onContactClick={() => {}}
                 />
               </div>
             </div>

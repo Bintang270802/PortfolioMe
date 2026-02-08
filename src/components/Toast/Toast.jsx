@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { FiCheck, FiX, FiAlertCircle, FiInfo, FiDownload } from 'react-icons/fi';
 
 const Toast = ({ 
   id,
@@ -34,18 +33,18 @@ const Toast = ({
     }, 300);
   };
 
-  const getIcon = () => {
+  const getLabel = () => {
     switch (type) {
       case 'success':
-        return <FiCheck className="w-5 h-5" />;
+        return 'Success';
       case 'error':
-        return <FiX className="w-5 h-5" />;
+        return 'Error';
       case 'warning':
-        return <FiAlertCircle className="w-5 h-5" />;
+        return 'Warning';
       case 'download':
-        return <FiDownload className="w-5 h-5" />;
+        return 'Download';
       default:
-        return <FiInfo className="w-5 h-5" />;
+        return 'Info';
     }
   };
 
@@ -114,9 +113,9 @@ const Toast = ({
         )}
 
         <div className="flex items-start gap-3">
-          {/* Icon */}
-          <div className={`flex-shrink-0 ${getIconColor()}`}>
-            {getIcon()}
+          {/* Label */}
+          <div className={`flex-shrink-0 ${getIconColor()} font-bold text-xs uppercase`}>
+            {getLabel()}
           </div>
 
           {/* Content */}
@@ -146,10 +145,10 @@ const Toast = ({
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="flex-shrink-0 text-zinc-400 hover:text-white transition-colors duration-200 p-1 hover:bg-white/10 rounded"
+            className="flex-shrink-0 text-zinc-400 hover:text-white transition-colors duration-200 px-2 py-1 hover:bg-white/10 rounded text-xs font-bold"
             aria-label="Close notification"
           >
-            <FiX className="w-4 h-4" />
+            ×
           </button>
         </div>
       </div>

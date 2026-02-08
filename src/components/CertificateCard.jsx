@@ -6,11 +6,7 @@ const CertificateCard = ({ sertifikat }) => {
   const [imageError, setImageError] = useState(false);
   const { t, language } = useLanguage();
 
-  // Debug: log image path
-  console.log('Certificate image path:', sertifikat.gambar);
-
   const handleImageError = () => {
-    console.log('Image failed to load:', sertifikat.gambar);
     setImageError(true);
   };
 
