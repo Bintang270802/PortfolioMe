@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { FiUser } from 'react-icons/fi';
 import { getInitials, getAvatarColor } from '../utils/avatarUtils';
 
 export default function UserAvatar({ 
@@ -72,13 +71,13 @@ export default function UserAvatar({
   };
 
   if (!src || imageError) {
-    // Fallback to initials or icon
+    // Fallback to initials
     return (
       <div 
         className={`${sizeClasses} ${getAvatarColor(fallbackName)} rounded-full flex items-center justify-center text-white font-semibold ${className}`}
         title={alt}
       >
-        {fallbackName ? getInitials(fallbackName) : <FiUser className="w-1/2 h-1/2" />}
+        {fallbackName ? getInitials(fallbackName) : 'U'}
       </div>
     );
   }
@@ -87,7 +86,7 @@ export default function UserAvatar({
     <div className={`${sizeClasses} relative ${className}`}>
       {imageLoading && (
         <div className={`${sizeClasses} ${getAvatarColor(fallbackName)} rounded-full flex items-center justify-center text-white font-semibold absolute inset-0 animate-pulse`}>
-          {fallbackName ? getInitials(fallbackName) : <FiUser className="w-1/2 h-1/2" />}
+          {fallbackName ? getInitials(fallbackName) : 'U'}
         </div>
       )}
       <img

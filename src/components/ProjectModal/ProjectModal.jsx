@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { FiX, FiGithub, FiExternalLink } from 'react-icons/fi';
-import { SiFigma } from 'react-icons/si';
 import { useLanguage } from '../../hooks/useLanguage';
 import { getLocalizedText } from '../../data';
 import DevelopmentPopup from '../DevelopmentPopup/DevelopmentPopup';
@@ -65,9 +63,9 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
           </div>
           <button
             onClick={handleClose}
-            className="text-zinc-400 hover:text-white transition-colors p-2 rounded-full hover:bg-zinc-700 flex-shrink-0"
+            className="text-zinc-400 hover:text-white transition-colors px-3 py-2 rounded-full hover:bg-zinc-700 flex-shrink-0 text-2xl font-bold"
           >
-            <FiX size={24} />
+            ×
           </button>
         </div>
 
@@ -145,7 +143,6 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
               rel="noopener noreferrer"
               className="flex-1 inline-flex items-center justify-center gap-2 font-semibold bg-violet-600 hover:bg-violet-700 text-white p-3 px-5 rounded-lg transition-all duration-300 hover:scale-105"
             >
-              <FiGithub />
               <span>{t('projects.sourceCode')}</span>
             </a>
 
@@ -157,7 +154,6 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                 rel="noopener noreferrer"
                 className="flex-1 inline-flex items-center justify-center gap-2 font-semibold bg-zinc-700 hover:bg-zinc-600 text-white p-3 px-5 rounded-lg transition-all duration-300 hover:scale-105"
               >
-                <SiFigma />
                 <span>{t('projects.design')}</span>
               </a>
             )}
@@ -172,7 +168,6 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                     : 'bg-green-600 hover:bg-green-700 text-white'
                 }`}
               >
-                <FiExternalLink />
                 <span>
                   {project.status === 'development' 
                     ? 'Live Demo (Development)' 

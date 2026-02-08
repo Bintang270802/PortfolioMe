@@ -1,5 +1,4 @@
 import { useState, useMemo, useEffect } from 'react';
-import { FiSearch, FiFilter, FiX } from 'react-icons/fi';
 import { useLanguage } from '../../hooks/useLanguage';
 
 const ProjectFilter = ({ projects, onFilteredProjects, className = "" }) => {
@@ -80,15 +79,15 @@ const ProjectFilter = ({ projects, onFilteredProjects, className = "" }) => {
       <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
         {/* Search Input */}
         <div className="relative flex-1 max-w-md">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <FiSearch className="h-5 w-5 text-zinc-400" />
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400 text-sm">
+            Search
           </div>
           <input
             type="text"
             placeholder={t('projects.search.placeholder') || 'Search projects...'}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-zinc-800/50 border border-zinc-600/50 rounded-xl pl-10 pr-4 py-3 text-white placeholder-zinc-400 focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all duration-300 text-sm"
+            className="w-full bg-zinc-800/50 border border-zinc-600/50 rounded-xl pl-20 pr-4 py-3 text-white placeholder-zinc-400 focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all duration-300 text-sm"
           />
         </div>
 
@@ -101,7 +100,6 @@ const ProjectFilter = ({ projects, onFilteredProjects, className = "" }) => {
               : 'bg-zinc-800/50 border-zinc-600/50 text-zinc-300 hover:border-zinc-500/50'
           }`}
         >
-          <FiFilter className="w-4 h-4" />
           <span>Filter</span>
           {selectedTech && (
             <span className="bg-violet-500/20 text-violet-300 px-2 py-1 rounded-md text-xs">
@@ -116,7 +114,6 @@ const ProjectFilter = ({ projects, onFilteredProjects, className = "" }) => {
             onClick={clearFilters}
             className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-600/20 border border-red-500/50 text-red-300 hover:bg-red-600/30 transition-all duration-300 text-sm font-medium"
           >
-            <FiX className="w-4 h-4" />
             <span>Clear</span>
           </button>
         )}
