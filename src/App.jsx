@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { useLanguage } from './hooks/useLanguage';
 import { useToast } from './hooks/useToast';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
+import { useResponsive } from './hooks/useResponsive';
 import { usePageTracking, useScrollTracking, useErrorTracking } from './hooks/useAnalytics';
 import { trackProjectView, trackFilter } from './utils/analytics';
 import ProfileCard from "./components/ProfileCard/ProfileCard";
@@ -8,6 +10,7 @@ import ShinyText from "./components/ShinyText/ShinyText";
 import BlurText from "./components/BlurText/BlurText";
 import RotatingText from "./components/RotatingText/RotatingText";
 import Lanyard from "./components/Lanyard/Lanyard";
+import ScrollToTop from "./components/ScrollToTop";
 import { listTools, listProyek, listSertifikat, listPengalaman } from "./data";
 import ChromaGrid from "./components/ChromaGrid/ChromaGrid";
 import ProjectModal from "./components/ProjectModal/ProjectModal";
@@ -22,7 +25,13 @@ import ContactForm from "./components/ContactForm";
 import ToastContainer from "./components/Toast/ToastContainer";
 import 'aos/dist/aos.css';
 
-AOS.init();
+AOS.init({
+  duration: 800,
+  easing: 'ease-in-out',
+  once: true,
+  mirror: false,
+  offset: 100
+});
 
 function App() {
   const aboutRef = useRef(null);
@@ -30,6 +39,10 @@ function App() {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
   const [filteredProjects, setFilteredProjects] = useState(listProyek);
+  
+  // Custom hooks
+  useSmoothScroll(80); // Enable smooth scrolling with 80px offset
+  const { isMobile, isTablet, isDesktop } = useResponsive();
   
   // Toast system
   const { toasts, removeToast } = useToast();
@@ -407,6 +420,9 @@ function App() {
       
       {/* Toast Container */}
       <ToastContainer toasts={toasts} onRemoveToast={removeToast} />
+      
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
       
       {/* Development Status - hanya tampil di development */}
       {import.meta.env.DEV && <SupabaseStatus />}
