@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { FiEye, FiEyeOff, FiUser, FiRefreshCw } from 'react-icons/fi';
 import { getAvatarUrl, getDisplayName } from '../utils/avatarUtils';
 
 export default function AvatarDebug({ user }) {
@@ -52,7 +51,7 @@ export default function AvatarDebug({ user }) {
         onClick={() => setShowDebug(!showDebug)}
         className="flex items-center gap-2 text-yellow-300 text-sm font-medium mb-2"
       >
-        {showDebug ? <FiEyeOff className="w-4 h-4" /> : <FiEye className="w-4 h-4" />}
+        <span>{showDebug ? '👁️' : '👁️'}</span>
         Avatar Debug Info
       </button>
       
@@ -103,7 +102,7 @@ export default function AvatarDebug({ user }) {
                 onClick={() => testImageUrl(testingUrl)}
                 className="bg-yellow-600 hover:bg-yellow-700 text-white px-3 py-1 rounded text-xs flex items-center gap-1"
               >
-                <FiRefreshCw className="w-3 h-3" />
+                <span>🔄</span>
                 Test
               </button>
             </div>

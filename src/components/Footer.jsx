@@ -1,17 +1,16 @@
 import "remixicon/fonts/remixicon.css";
 import Dock from "./Dock/Dock";
-import { VscHome, VscArchive, VscAccount, VscBriefcase, VscMortarBoard } from "react-icons/vsc";
 import { useLanguage } from '../hooks/useLanguage';
 
 const Footer = () => {
   const { t } = useLanguage();
   
   const items = [
-    { icon: <VscHome size={18} />, label: t('nav.home'), onClick: () => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" }) },
-    { icon: <VscAccount size={18} />, label: t('nav.about'), onClick: () => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }) },
-    { icon: <VscBriefcase size={18} />, label: t('nav.experience'), onClick: () => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" }) },
-    { icon: <VscMortarBoard size={18} />, label: t('nav.certificates'), onClick: () => document.getElementById("certificates")?.scrollIntoView({ behavior: "smooth" }) },
-    { icon: <VscArchive size={18} />, label: t('nav.project'), onClick: () => document.getElementById("project")?.scrollIntoView({ behavior: "smooth" }) },
+    { label: t('nav.home'), onClick: () => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" }) },
+    { label: t('nav.about'), onClick: () => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }) },
+    { label: t('nav.experience'), onClick: () => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" }) },
+    { label: t('nav.certificates'), onClick: () => document.getElementById("certificates")?.scrollIntoView({ behavior: "smooth" }) },
+    { label: t('nav.project'), onClick: () => document.getElementById("project")?.scrollIntoView({ behavior: "smooth" }) },
   ];
 
   return (

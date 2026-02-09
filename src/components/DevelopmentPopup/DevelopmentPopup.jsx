@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { FiX, FiClock, FiTool } from 'react-icons/fi';
 import { useLanguage } from '../../hooks/useLanguage';
 
 const DevelopmentPopup = ({ isOpen, onClose, projectName }) => {
@@ -32,17 +31,17 @@ const DevelopmentPopup = ({ isOpen, onClose, projectName }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors"
+          className="absolute top-4 right-4 px-3 py-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-colors text-xl font-bold"
           aria-label="Close popup"
         >
-          <FiX className="w-5 h-5" />
+          ×
         </button>
 
         {/* Icon */}
         <div className="flex justify-center mb-6">
           <div className="relative">
             <div className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-full flex items-center justify-center border border-orange-500/30">
-              <FiTool className="w-8 h-8 text-orange-400" />
+              <span className="text-3xl">🔧</span>
             </div>
             {/* Animated dots */}
             <div className="absolute -top-1 -right-1">
@@ -67,7 +66,7 @@ const DevelopmentPopup = ({ isOpen, onClose, projectName }) => {
 
           <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-4 mb-6">
             <div className="flex items-center gap-3">
-              <FiClock className="w-5 h-5 text-blue-400 flex-shrink-0" />
+              <span className="text-blue-400 text-xl">⏱️</span>
               <div className="text-left">
                 <p className="text-sm font-medium text-white">Status Pengembangan</p>
                 <p className="text-xs text-zinc-400">Dalam proses development</p>

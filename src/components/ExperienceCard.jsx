@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { RiBuildingLine, RiCalendarLine, RiMapPinLine, RiTimeLine, RiArrowRightSLine, RiEyeLine } from 'react-icons/ri';
 import { useLanguage } from '../hooks/useLanguage';
 import { getLocalizedText } from '../data';
 
@@ -74,21 +73,21 @@ const ExperienceCard = ({ experience, onClick }) => {
               </h3>
               
               <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                <RiBuildingLine className="text-violet-400 text-sm flex-shrink-0" />
+                <span className="text-violet-400 text-xs font-bold uppercase">Company</span>
                 <span className="text-violet-300 font-semibold text-sm sm:text-base truncate">{experience.perusahaan}</span>
               </div>
 
               <div className="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
                 <div className="flex items-center gap-1">
-                  <RiCalendarLine className="text-xs" />
+                  <span className="font-semibold">Period:</span>
                   <span>{experience.periode}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <RiTimeLine className="text-xs" />
+                  <span className="font-semibold">Duration:</span>
                   <span>{calculateDuration(experience.tanggalMulai, experience.tanggalSelesai)}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <RiMapPinLine className="text-xs" />
+                  <span className="font-semibold">Location:</span>
                   <span>{experience.lokasi}</span>
                 </div>
               </div>
@@ -138,9 +137,8 @@ const ExperienceCard = ({ experience, onClick }) => {
             onClick={onClick}
             className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white font-semibold py-2.5 sm:py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 group text-sm sm:text-base"
           >
-            <RiEyeLine className="group-hover:scale-110 transition-transform" />
             <span>{t('experience.viewFullDetails')}</span>
-            <RiArrowRightSLine className="group-hover:translate-x-1 transition-transform" />
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
       </div>

@@ -1,15 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  FiX, 
-  FiCalendar, 
-  FiMapPin, 
-  FiClock, 
-  FiBriefcase, 
-  FiAward, 
-  FiTool,
-  FiExternalLink
-} from 'react-icons/fi';
-import { RiBuildingLine } from 'react-icons/ri';
 import { useLanguage } from '../hooks/useLanguage';
 import { getLocalizedText } from '../data';
 
@@ -96,21 +85,21 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
               </h2>
               
               <div className="flex items-center gap-2 mb-4">
-                <RiBuildingLine className="text-violet-400" />
+                <span className="text-violet-400 font-bold text-xs uppercase">Company:</span>
                 <span className="text-xl text-violet-300 font-semibold">{experience.perusahaan}</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div className="flex items-center gap-2 text-gray-300">
-                  <FiCalendar className="text-violet-400" />
+                  <span className="text-violet-400 font-semibold">Period:</span>
                   <span>{experience.periode}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-300">
-                  <FiClock className="text-blue-400" />
+                  <span className="text-blue-400 font-semibold">Duration:</span>
                   <span>{calculateDuration(experience.tanggalMulai, experience.tanggalSelesai)}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-300">
-                  <FiMapPin className="text-green-400" />
+                  <span className="text-green-400 font-semibold">Location:</span>
                   <span>{experience.lokasi}</span>
                 </div>
               </div>
@@ -120,9 +109,9 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
             <div className="flex flex-col items-end gap-4">
               <button
                 onClick={handleClose}
-                className="text-zinc-400 hover:text-white transition-colors p-2 rounded-full hover:bg-zinc-700"
+                className="text-zinc-400 hover:text-white transition-colors px-3 py-2 rounded-full hover:bg-zinc-700 text-2xl font-bold"
               >
-                <FiX size={24} />
+                ×
               </button>
               
               <span className={`px-4 py-2 rounded-full text-sm font-semibold ${
@@ -142,7 +131,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
             {/* Description */}
             <div>
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                <FiBriefcase className="text-violet-400" />
+                <span className="text-violet-400 font-bold text-xs uppercase">Description</span>
                 {t('experience.jobDescription')}
               </h3>
               <p className="text-gray-300 leading-relaxed bg-zinc-800/30 p-4 rounded-lg border border-zinc-700/50">
@@ -153,7 +142,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
             {/* Responsibilities */}
             <div>
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                <FiBriefcase className="text-blue-400" />
+                <span className="text-blue-400 font-bold text-xs uppercase">Responsibilities</span>
                 {t('experience.mainResponsibilities')}
               </h3>
               <div className="grid gap-3">
@@ -174,7 +163,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
             {/* Technologies */}
             <div>
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                <FiTool className="text-green-400" />
+                <span className="text-green-400 font-bold text-xs uppercase">Technologies</span>
                 {t('experience.technologiesTools')}
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -193,7 +182,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
             {/* Achievements */}
             <div>
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                <FiAward className="text-yellow-400" />
+                <span className="text-yellow-400 font-bold text-xs uppercase">Achievements</span>
                 {t('experience.achievementsContributions')}
               </h3>
               <div className="space-y-4">
@@ -203,7 +192,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
                     className="flex items-start gap-4 p-4 bg-gradient-to-r from-yellow-500/5 to-orange-500/5 rounded-lg border border-yellow-500/20 hover:border-yellow-500/40 transition-colors"
                   >
                     <div className="w-8 h-8 bg-yellow-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <FiAward className="text-yellow-400 text-sm" />
+                      <span className="text-yellow-400 text-sm font-bold">★</span>
                     </div>
                     <span className="text-gray-300">{item}</span>
                   </div>
