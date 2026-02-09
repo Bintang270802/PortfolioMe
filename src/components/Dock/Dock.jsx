@@ -64,7 +64,7 @@ function DockItem({
       role="button"
     >
       {Children.map(children, (child, index) =>
-        cloneElement(child, { isHovered, key: index })
+        cloneElement(child, { isHovered })
       )}
     </motion.div>
   );
