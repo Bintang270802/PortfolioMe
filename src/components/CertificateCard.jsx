@@ -69,15 +69,15 @@ const CertificateCard = ({ sertifikat }) => {
       className="group relative bg-zinc-900/60 backdrop-blur-md border border-zinc-700 rounded-xl overflow-hidden hover:bg-zinc-800/80 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
       data-aos="fade-up" 
       data-aos-duration="1000" 
-      data-aos-delay={sertifikat.dad} 
+      data-aos-delay={sertifikat.delay || sertifikat.dad} 
       data-aos-once="true"
     >
       {/* Certificate Image */}
       <div className={`relative h-64 overflow-hidden bg-gradient-to-br ${getCategoryGradient(sertifikat.kategori)}`}>
         {!imageError ? (
           <img
-            src={sertifikat.gambar}
-            alt={sertifikat.nama}
+            src={sertifikat.image || sertifikat.gambar}
+            alt={sertifikat.name || sertifikat.nama}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
             onError={handleImageError}
           />
@@ -99,7 +99,7 @@ const CertificateCard = ({ sertifikat }) => {
             
             {/* Certificate Text */}
             <span className="text-white text-sm font-medium text-center px-4">
-              {getLocalizedText(sertifikat.nama, language)}
+              {getLocalizedText(sertifikat.name || sertifikat.nama, language)}
             </span>
             
             {/* Decorative Elements */}

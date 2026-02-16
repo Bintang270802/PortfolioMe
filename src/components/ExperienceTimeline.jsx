@@ -20,8 +20,8 @@ const ExperienceTimeline = ({ experiences }) => {
 
   // Sort experiences by start date (newest first)
   const sortedExperiences = [...experiences].sort((a, b) => {
-    const dateA = new Date(a.tanggalMulai);
-    const dateB = new Date(b.tanggalMulai);
+    const dateA = new Date(a.startDate || a.tanggalMulai);
+    const dateB = new Date(b.startDate || b.tanggalMulai);
     return dateB - dateA;
   });
 

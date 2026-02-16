@@ -30,7 +30,7 @@ const ExperienceCard = ({ experience, onClick }) => {
       className="group relative transition-all duration-500 hover:scale-102"
       data-aos="fade-up" 
       data-aos-duration="1000" 
-      data-aos-delay={experience.dad} 
+      data-aos-delay={experience.delay || experience.dad} 
       data-aos-once="true"
     >
       {/* Timeline Line - Hidden on mobile */}
@@ -59,7 +59,7 @@ const ExperienceCard = ({ experience, onClick }) => {
               ) : (
                 <div 
                   className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center text-white font-bold text-base sm:text-lg"
-                  style={{ backgroundColor: experience.warna }}
+                  style={{ backgroundColor: experience.color || experience.warna }}
                 >
                   {experience.perusahaan.charAt(0)}
                 </div>
@@ -69,7 +69,7 @@ const ExperienceCard = ({ experience, onClick }) => {
             {/* Job Info */}
             <div className="flex-1 min-w-0">
               <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-violet-400 transition-colors line-clamp-2">
-                {getLocalizedText(experience.posisi, language)}
+                {getLocalizedText(experience.position || experience.posisi, language)}
               </h3>
               
               <div className="flex items-center gap-2 mb-2 sm:mb-3">
@@ -84,7 +84,7 @@ const ExperienceCard = ({ experience, onClick }) => {
                 </div>
                 <div className="flex items-center gap-1">
                   <span className="font-semibold">Duration:</span>
-                  <span>{calculateDuration(experience.tanggalMulai, experience.tanggalSelesai)}</span>
+                  <span>{calculateDuration(experience.startDate || experience.tanggalMulai, experience.endDate || experience.tanggalSelesai)}</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <span className="font-semibold">Location:</span>
@@ -109,14 +109,14 @@ const ExperienceCard = ({ experience, onClick }) => {
         {/* Description */}
         <div className="p-4 sm:p-6">
           <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed line-clamp-3 text-sm sm:text-base">
-            {getLocalizedText(experience.deskripsi, language)}
+            {getLocalizedText(experience.description || experience.deskripsi, language)}
           </p>
 
           {/* Technologies Preview */}
           <div className="mb-4 sm:mb-6">
             <h4 className="text-xs sm:text-sm font-semibold text-gray-400 mb-2">{t('experience.mainTechnologies')}</h4>
             <div className="flex flex-wrap gap-2">
-              {experience.teknologi.slice(0, 4).map((tech, idx) => (
+              {(experience.technologies || experience.teknologi).slice(0, 4).map((tech, idx) => (
                 <span 
                   key={idx}
                   className="px-2 py-1 bg-zinc-800/50 border border-zinc-600 rounded text-xs text-gray-300"
@@ -124,9 +124,9 @@ const ExperienceCard = ({ experience, onClick }) => {
                   {tech}
                 </span>
               ))}
-              {experience.teknologi.length > 4 && (
+              {(experience.technologies || experience.teknologi).length > 4 && (
                 <span className="px-2 py-1 bg-violet-500/20 border border-violet-500/30 rounded text-xs text-violet-300">
-                  +{experience.teknologi.length - 4} {t('experience.others')}
+                  +{(experience.technologies || experience.teknologi).length - 4} {t('experience.others')}
                 </span>
               )}
             </div>

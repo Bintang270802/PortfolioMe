@@ -71,7 +71,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
               ) : (
                 <div 
                   className="w-20 h-20 rounded-2xl flex items-center justify-center text-white font-bold text-2xl border-2 border-violet-500/30"
-                  style={{ backgroundColor: experience.warna }}
+                  style={{ backgroundColor: experience.color || experience.warna }}
                 >
                   {experience.perusahaan.charAt(0)}
                 </div>
@@ -81,7 +81,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
             {/* Job Info */}
             <div className="flex-1 min-w-0">
               <h2 className="text-3xl font-bold text-white mb-2">
-                {getLocalizedText(experience.posisi, language)}
+                {getLocalizedText(experience.position || experience.posisi, language)}
               </h2>
               
               <div className="flex items-center gap-2 mb-4">
@@ -96,7 +96,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
                 </div>
                 <div className="flex items-center gap-2 text-gray-300">
                   <span className="text-blue-400 font-semibold">Duration:</span>
-                  <span>{calculateDuration(experience.tanggalMulai, experience.tanggalSelesai)}</span>
+                  <span>{calculateDuration(experience.startDate || experience.tanggalMulai, experience.endDate || experience.tanggalSelesai)}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-300">
                   <span className="text-green-400 font-semibold">Location:</span>
@@ -146,7 +146,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
                 {t('experience.mainResponsibilities')}
               </h3>
               <div className="grid gap-3">
-                {getLocalizedText(experience.tanggungJawab, language).map((item, idx) => (
+                {getLocalizedText(experience.responsibilities || experience.tanggungJawab, language).map((item, idx) => (
                   <div 
                     key={idx} 
                     className="flex items-start gap-3 p-4 bg-zinc-800/30 rounded-lg border border-zinc-700/50 hover:border-violet-500/30 transition-colors"
@@ -186,7 +186,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
                 {t('experience.achievementsContributions')}
               </h3>
               <div className="space-y-4">
-                {getLocalizedText(experience.pencapaian, language).map((item, idx) => (
+                {getLocalizedText(experience.achievements || experience.pencapaian, language).map((item, idx) => (
                   <div 
                     key={idx} 
                     className="flex items-start gap-4 p-4 bg-gradient-to-r from-yellow-500/5 to-orange-500/5 rounded-lg border border-yellow-500/20 hover:border-yellow-500/40 transition-colors"
@@ -206,7 +206,7 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="text-center p-4 bg-zinc-800/30 rounded-lg">
                   <div className="text-2xl font-bold text-violet-400 mb-1">
-                    {new Date(experience.tanggalMulai).toLocaleDateString('id-ID', { 
+                    {new Date(experience.startDate || experience.tanggalMulai).toLocaleDateString('id-ID', { 
                       month: 'long', 
                       year: 'numeric' 
                     })}
@@ -215,16 +215,16 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
                 </div>
                 <div className="text-center p-4 bg-zinc-800/30 rounded-lg">
                   <div className="text-2xl font-bold text-blue-400 mb-1">
-                    {experience.tanggalSelesai === 'Present' 
+                    {(experience.endDate || experience.tanggalSelesai) === 'Present' 
                       ? t('experience.present')
-                      : new Date(experience.tanggalSelesai).toLocaleDateString('id-ID', { 
+                      : new Date(experience.endDate || experience.tanggalSelesai).toLocaleDateString('id-ID', { 
                           month: 'long', 
                           year: 'numeric' 
                         })
                     }
                   </div>
                   <div className="text-gray-400 text-sm">
-                    {experience.tanggalSelesai === 'Present' ? t('experience.currentlyActive') : t('experience.finished')}
+                    {(experience.endDate || experience.tanggalSelesai) === 'Present' ? t('experience.currentlyActive') : t('experience.finished')}
                   </div>
                 </div>
               </div>

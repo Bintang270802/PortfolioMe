@@ -262,27 +262,27 @@ function App() {
                 key={tool.id} 
                 data-aos="fade-up" 
                 data-aos-duration="1000" 
-                data-aos-delay={tool.dad} 
+                data-aos-delay={tool.delay || tool.dad} 
                 data-aos-once="true"
                 className="flex items-center gap-4 p-4 sm:p-6 border border-zinc-700 rounded-xl bg-zinc-900/60 backdrop-blur-md hover:bg-zinc-800/80 transition-all duration-300 group shadow-lg hover:shadow-xl hover:scale-105 hover:border-violet-500/50"
               >
                 <div className="flex-shrink-0">
                   <img
-                    src={tool.gambar}
-                    alt={`${tool.nama} Icon`}
+                    src={tool.image || tool.gambar}
+                    alt={`${tool.name || tool.nama} Icon`}
                     className="w-12 h-12 sm:w-16 sm:h-16 object-contain bg-zinc-800 p-2 sm:p-3 rounded-lg group-hover:bg-zinc-900 transition-all duration-300"
                   />
                 </div>
                 <div className="flex flex-col overflow-hidden min-w-0">
                   <div className="truncate">
                     <ShinyText
-                      text={tool.nama}
+                      text={tool.name || tool.nama}
                       disabled={false}
                       speed={3}
                       className="text-base sm:text-lg font-semibold block text-white"
                     />
                   </div>
-                  <p className="text-xs sm:text-sm text-zinc-400 truncate">{tool.ket}</p>
+                  <p className="text-xs sm:text-sm text-zinc-400 truncate">{tool.description || tool.ket}</p>
                 </div>
               </div>
             ))}
