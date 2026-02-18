@@ -141,7 +141,7 @@ const Footer = () => {
               </nav>
             </div>
 
-            {/* Social Media & Newsletter */}
+            {/* Social Media */}
             <div className="lg:col-span-1 space-y-6">
               <h3 className="text-lg font-semibold text-white mb-4">{t('footer.connectWithMe')}</h3>
               
@@ -182,21 +182,6 @@ const Footer = () => {
                     LinkedIn
                   </div>
                 </a>
-              </div>
-
-              {/* Newsletter Signup */}
-              <div className="space-y-3">
-                <p className="text-gray-300 text-sm">{t('footer.stayUpdated')}</p>
-                <div className="flex gap-2">
-                  <input 
-                    type="email" 
-                    placeholder={t('footer.emailPlaceholder')}
-                    className="flex-1 bg-zinc-800/50 border border-zinc-700 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all duration-300 text-sm"
-                  />
-                  <button className="bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 text-sm font-medium">
-                    {t('footer.subscribe')}
-                  </button>
-                </div>
               </div>
             </div>
           </div>

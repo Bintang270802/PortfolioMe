@@ -11,6 +11,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <title>Bintang Portofolio</title>
+    
+    <!-- Hide Chrome Violations - Must run BEFORE any other scripts -->
+    <script>
+      // Check if violations should be hidden
+      const hideViolations = true; // Set to false to show violations
+      
+      if (hideViolations) {
+        // Store original console methods
+        const originalConsole = {
+          log: console.log.bind(console),
+          warn: console.warn.bind(console),
+          error: console.error.bind(console),
+          info: console.info.bind(console),
+          debug: console.debug.bind(console)
+        };
+
+        // Patterns to filter
+        const violationPatterns = [
+          /\[Violation\]/i,
+          /Violation.*handler took/i,
+          /'message' handler took/i,
+          /'setTimeout' handler took/i,
+          /'requestAnimationFrame' handler took/i,
+          /'requestIdleCallback' handler took/i,
+          /Forced reflow/i,
+          /Long task/i,
+          /handler took \d+ms/i
+        ];
+
+        // Filter function
+        const shouldFilter = (args) => {
+          const message = Array.from(args).map(arg => String(arg)).join(' ');
+          return violationPatterns.some(pattern => pattern.test(message));
+        };
+
+        // Override console methods
+        console.log = function(...args) {
+          if (!shouldFilter(args)) originalConsole.log(...args);
+        };
+        console.warn = function(...args) {
+          if (!shouldFilter(args)) originalConsole.warn(...args);
+        };
+        console.error = function(...args) {
+          if (!shouldFilter(args)) originalConsole.error(...args);
+        };
+        console.info = function(...args) {
+          if (!shouldFilter(args)) originalConsole.info(...args);
+        };
+        console.debug = function(...args) {
+          if (!shouldFilter(args)) originalConsole.debug(...args);
+        };
+
+        // Suppress ReportingObserver
+        if (typeof ReportingObserver !== 'undefined') {
+          window.ReportingObserver = class {
+            constructor() {}
+            observe() {}
+            disconnect() {}
+            takeRecords() { return []; }
+          };
+        }
+      }
+    </script>
   </head>
   <body class = "bg-zinc-900 text-white" id="home">
     <div id="root"></div>
