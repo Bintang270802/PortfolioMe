@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { getLocalizedText } from '../data';
+import { getLocalizedText } from '../data/index';
 
 const ExperienceCard = ({ experience, onClick }) => {
   const [imageError, setImageError] = useState(false);

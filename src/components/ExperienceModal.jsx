@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { getLocalizedText } from '../data';
+import { getLocalizedText } from '../data/index';
 
 const ExperienceModal = ({ isOpen, onClose, experience }) => {
   const [isClosing, setIsClosing] = useState(false);
