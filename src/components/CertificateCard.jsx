@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { getLocalizedText } from '../data';
+import { getLocalizedText } from '../data/index';
 
 const CertificateCard = ({ sertifikat }) => {
   const [imageError, setImageError] = useState(false);
@@ -73,7 +73,7 @@ const CertificateCard = ({ sertifikat }) => {
       data-aos-once="true"
     >
       {/* Certificate Image */}
-      <div className={`relative h-64 overflow-hidden bg-gradient-to-br ${getCategoryGradient(sertifikat.kategori)}`}>
+      <div className={`relative h-64 overflow-hidden bg-gradient-to-br ${getCategoryGradient(sertifikat.category || sertifikat.kategori)}`}>
         {!imageError ? (
           <img
             src={sertifikat.image || sertifikat.gambar}
@@ -94,7 +94,7 @@ const CertificateCard = ({ sertifikat }) => {
             
             {/* Certificate Icon */}
             <div className="text-6xl mb-2 opacity-80">
-              {getCategoryIcon(sertifikat.kategori)}
+              {getCategoryIcon(sertifikat.category || sertifikat.kategori)}
             </div>
             
             {/* Certificate Text */}
@@ -115,7 +115,7 @@ const CertificateCard = ({ sertifikat }) => {
         {/* Category Badge */}
         <div className="absolute top-3 left-3">
           <span className="bg-violet-500/90 text-white text-xs font-semibold px-2 py-1 rounded-full backdrop-blur-sm">
-            {getLocalizedText(sertifikat.kategori, language)}
+            {getLocalizedText(sertifikat.category || sertifikat.kategori, language)}
           </span>
         </div>
 
@@ -136,29 +136,29 @@ const CertificateCard = ({ sertifikat }) => {
       <div className="p-6">
         {/* Certificate Name */}
         <h3 className="text-xl font-bold text-white mb-2 group-hover:text-violet-400 transition-colors line-clamp-2">
-          {getLocalizedText(sertifikat.nama, language)}
+          {getLocalizedText(sertifikat.name || sertifikat.nama, language)}
         </h3>
 
         {/* Issuer */}
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-violet-300 font-semibold text-sm truncate">{sertifikat.penerbit}</span>
+          <span className="text-violet-300 font-semibold text-sm truncate">{sertifikat.issuer || sertifikat.penerbit}</span>
         </div>
 
         {/* Date */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-gray-400 text-sm">{sertifikat.tanggal}</span>
+          <span className="text-gray-400 text-sm">{sertifikat.date || sertifikat.tanggal}</span>
         </div>
 
         {/* Description */}
         <p className="text-gray-300 text-sm mb-4 line-clamp-3 leading-relaxed">
-          {getLocalizedText(sertifikat.deskripsi, language)}
+          {getLocalizedText(sertifikat.description || sertifikat.deskripsi, language)}
         </p>
 
         {/* Credential ID */}
         <div className="mb-0">
           <span className="text-xs text-gray-500">{t('certificates.credentialId')}:</span>
           <p className="text-xs font-mono text-gray-400 bg-zinc-800 px-2 py-1 rounded mt-1 truncate">
-            {sertifikat.kredensial}
+            {sertifikat.credential || sertifikat.kredensial}
           </p>
         </div>
       </div>

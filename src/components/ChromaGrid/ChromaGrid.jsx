@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { useLanguage } from '../../hooks/useLanguage';
-import { getLocalizedText } from '../../data';
+import { getLocalizedText } from '../../data/index';
 import "./ChromaGrid.css";
 
 // Terima `onItemClick` di props

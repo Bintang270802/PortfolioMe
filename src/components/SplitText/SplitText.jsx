@@ -41,7 +41,10 @@ const SplitText = ({
         linesClass: "split-line",
       });
     } catch (error) {
-      console.error("Failed to create SplitText:", error);
+      // Silently fail in production, log in development
+      if (import.meta.env.DEV) {
+        console.error("Failed to create SplitText:", error);
+      }
       return;
     }
 
@@ -61,7 +64,10 @@ const SplitText = ({
     }
 
     if (!targets || targets.length === 0) {
-      console.warn("No targets found for SplitText animation");
+      // Silently fail in production, log in development
+      if (import.meta.env.DEV) {
+        console.warn("No targets found for SplitText animation");
+      }
       splitter.revert();
       return;
     }
