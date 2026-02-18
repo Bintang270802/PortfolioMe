@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
-import { getLocalizedText } from '../../data';
+import { getLocalizedText } from '../../data/index';
 import DevelopmentPopup from '../DevelopmentPopup/DevelopmentPopup';
 
 const ProjectModal = ({ isOpen, onClose, project }) => {

@@ -226,7 +226,12 @@ const ProfileCardComponent = ({
               window.addEventListener('deviceorientation', deviceOrientationHandler);
             }
           })
-          .catch(err => console.error(err));
+          .catch(err => {
+            // Silently fail in production, log in development
+            if (import.meta.env.DEV) {
+              console.error(err);
+            }
+          });
       } else {
         window.addEventListener('deviceorientation', deviceOrientationHandler);
       }
