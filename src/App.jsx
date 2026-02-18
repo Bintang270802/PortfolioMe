@@ -10,7 +10,7 @@ import BlurText from "./components/BlurText/BlurText";
 import RotatingText from "./components/RotatingText/RotatingText";
 import Lanyard from "./components/Lanyard/Lanyard";
 import ScrollToTop from "./components/ScrollToTop";
-import { listTools, listProyek, listSertifikat, listPengalaman } from "./data";
+import { tools, projects, certificates, experience } from "./data/index";
 import ChromaGrid from "./components/ChromaGrid/ChromaGrid";
 import ProjectModal from "./components/ProjectModal/ProjectModal";
 import ProjectFilter from "./components/ProjectFilter/ProjectFilter";
@@ -37,7 +37,7 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
-  const [filteredProjects, setFilteredProjects] = useState(listProyek);
+  const [filteredProjects, setFilteredProjects] = useState(projects);
   
   // Custom hooks
   useSmoothScroll(80); // Enable smooth scrolling with 80px offset
@@ -62,7 +62,7 @@ function App() {
   const handleFilteredProjects = (projects) => {
     setFilteredProjects(projects);
     // Track filter usage
-    if (projects.length !== listProyek.length) {
+    if (projects.length !== projects.length) {
       trackFilter('project_filter', 'applied', projects.length);
     }
   };
@@ -257,32 +257,32 @@ function App() {
           </div>
           
           <div className="tools-box grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-            {listTools.map((tool) => (
+            {tools.map((tool) => (
               <div
                 key={tool.id} 
                 data-aos="fade-up" 
                 data-aos-duration="1000" 
-                data-aos-delay={tool.delay || tool.dad} 
+                data-aos-delay={tool.delay} 
                 data-aos-once="true"
                 className="flex items-center gap-4 p-4 sm:p-6 border border-zinc-700 rounded-xl bg-zinc-900/60 backdrop-blur-md hover:bg-zinc-800/80 transition-all duration-300 group shadow-lg hover:shadow-xl hover:scale-105 hover:border-violet-500/50"
               >
                 <div className="flex-shrink-0">
                   <img
-                    src={tool.image || tool.gambar}
-                    alt={`${tool.name || tool.nama} Icon`}
+                    src={tool.image}
+                    alt={`${tool.name} Icon`}
                     className="w-12 h-12 sm:w-16 sm:h-16 object-contain bg-zinc-800 p-2 sm:p-3 rounded-lg group-hover:bg-zinc-900 transition-all duration-300"
                   />
                 </div>
                 <div className="flex flex-col overflow-hidden min-w-0">
                   <div className="truncate">
                     <ShinyText
-                      text={tool.name || tool.nama}
+                      text={tool.name}
                       disabled={false}
                       speed={3}
                       className="text-base sm:text-lg font-semibold block text-white"
                     />
                   </div>
-                  <p className="text-xs sm:text-sm text-zinc-400 truncate">{tool.description || tool.ket}</p>
+                  <p className="text-xs sm:text-sm text-zinc-400 truncate">{tool.description}</p>
                 </div>
               </div>
             ))}
@@ -304,7 +304,7 @@ function App() {
             </p>
           </div>
           
-          <ExperienceTimeline experiences={listPengalaman} />
+          <ExperienceTimeline experiences={experience} />
         </div>
 
         {/* Certificates Section */}
@@ -316,7 +316,7 @@ function App() {
             </div>
           </div>
           <CertificateSection 
-            certificates={listSertifikat}
+            certificates={certificates}
             title={t('certificates.title')}
             subtitle={t('certificates.subtitle')}
           />
@@ -340,7 +340,7 @@ function App() {
           {/* Project Filter */}
           <div className="mb-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" data-aos-once="true">
             <ProjectFilter
-              projects={listProyek}
+              projects={projects}
               onFilteredProjects={handleFilteredProjects}
               className="max-w-4xl mx-auto px-4"
             />

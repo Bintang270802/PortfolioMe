@@ -74,7 +74,10 @@ export default function ChatRoom() {
   const loadMessages = async () => {
     const { data, error } = await getMessages();
     if (error) {
-      console.error('Error loading messages:', error);
+      // Silently fail in production, log in development
+      if (import.meta.env.DEV) {
+        console.error('Error loading messages:', error);
+      }
     } else {
       setMessages(data || []);
     }
